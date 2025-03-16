@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<resources>
+
+    <string name="app_name">Muppi</string>
+
+    <string name="nav_item_home">Home</string>
+    <string name="nav_item_explore">Exple</string>
+    <string name="nav_item_saved">Saved</string>
+
+    <string name="tv_top_rated">Top Rated</string>
+    <string name="tv_upcoming_movies">Upcoming Movies</string>
+    <string name="tv_series_on_air">Series On Air</string>
+    <string name="tv_see_all">See all</string>
+
+    <string name="tv_storyline">Storyline</string>
+    <string name="tv_trailer">Trailer</string>
+    <string name="tv_cast">Cast</string>
+    <string name="tv_similar_movies">Similar Movies</string>
+
+
+    <string name="desc_logo_splash">Logo Splash Screen</string>
+
+</resources>
