@@ -29,9 +29,9 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor200
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryFont
+import com.nandaiqbalh.muppi.core.presentation.primaryColor
+import com.nandaiqbalh.muppi.core.presentation.primaryColor200
+import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_nav_explore_active
 import muppi.composeapp.generated.resources.ic_nav_explore_inactive

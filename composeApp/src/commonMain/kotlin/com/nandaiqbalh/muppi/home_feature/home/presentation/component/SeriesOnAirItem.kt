@@ -2,12 +2,10 @@ package com.nandaiqbalh.muppi.home_feature.home.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -28,9 +26,9 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.presentation.utils.onBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryFont
+import com.nandaiqbalh.muppi.core.presentation.onBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.animation.circular.CircularRevealPlugin

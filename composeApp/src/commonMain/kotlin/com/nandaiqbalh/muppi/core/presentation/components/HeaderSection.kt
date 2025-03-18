@@ -10,11 +10,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryFont
+import com.nandaiqbalh.muppi.core.presentation.primaryColor
+import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.nunito_medium
 import org.jetbrains.compose.resources.Font

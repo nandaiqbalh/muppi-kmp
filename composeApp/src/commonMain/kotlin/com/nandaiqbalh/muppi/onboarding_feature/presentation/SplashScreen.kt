@@ -19,8 +19,8 @@ import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor
+import com.nandaiqbalh.muppi.core.presentation.primaryBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import kotlinx.coroutines.delay
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.app_name

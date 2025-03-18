@@ -19,8 +19,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.presentation.utils.inactiveColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor
+import com.nandaiqbalh.muppi.core.presentation.inactiveColor
+import com.nandaiqbalh.muppi.core.presentation.primaryColor
 
 @Composable
 fun NowPlayingSection(

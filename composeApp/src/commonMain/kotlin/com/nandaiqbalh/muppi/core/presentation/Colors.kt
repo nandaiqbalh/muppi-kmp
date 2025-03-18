@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.core.presentation.utils
+package com.nandaiqbalh.muppi.core.presentation
 
 import androidx.compose.ui.graphics.Color
 

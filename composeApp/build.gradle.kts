@@ -1,3 +1,4 @@
+import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
@@ -9,6 +10,18 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.serialization)
     alias(libs.plugins.ksp)
     alias(libs.plugins.room)
+    alias(libs.plugins.buildkonfig)
+}
+
+val tmdbApiKey: String? = project.findProperty("TMDB_API_KEY") as String?
+
+buildkonfig {
+    packageName = "com.nandaiqbalh.muppi"  // Your package name
+
+    // Ensure to use the TMDB API key securely via `local.properties`
+    defaultConfigs {
+        buildConfigField(FieldSpec.Type.STRING, "TMDB_API_KEY", "\"${tmdbApiKey ?: ""}\"")
+    }
 }
 
 kotlin {
@@ -43,6 +56,9 @@ kotlin {
             implementation(libs.koin.android)
             implementation(libs.koin.androidx.compose)
             implementation(libs.ktor.client.okhttp)
+
+            implementation(libs.chucker)
+
         }
         commonMain.dependencies {
             implementation(compose.runtime)
@@ -77,6 +93,8 @@ kotlin {
             implementation(libs.landscapist.animation)
 
             implementation(libs.kotlinx.datetime)
+
+            api(libs.kermit)
 
         }
 

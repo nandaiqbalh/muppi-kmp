@@ -30,10 +30,8 @@ import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.domain.model.getGenreNamesByIds
 import com.nandaiqbalh.muppi.core.presentation.components.GenreChip
 import com.nandaiqbalh.muppi.core.presentation.components.VerticalGradientBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.inactiveColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryFont
+import com.nandaiqbalh.muppi.core.presentation.primaryBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes
 import com.nandaiqbalh.muppi.core.utils.toFormattedDate
 import com.skydoves.landscapist.ImageOptions
@@ -42,7 +40,6 @@ import com.skydoves.landscapist.coil3.CoilImage
 import com.skydoves.landscapist.components.rememberImageComponent
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_failed
-import muppi.composeapp.generated.resources.ic_star
 import muppi.composeapp.generated.resources.nunito_medium
 import muppi.composeapp.generated.resources.nunito_regular
 import muppi.composeapp.generated.resources.nunito_semibold

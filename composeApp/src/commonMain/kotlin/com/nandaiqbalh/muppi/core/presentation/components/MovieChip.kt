@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -21,10 +20,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.nandaiqbalh.muppi.core.presentation.utils.onBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryFont
+import com.nandaiqbalh.muppi.core.presentation.onBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.app_name
 import muppi.composeapp.generated.resources.nunito_semibold

@@ -18,7 +18,7 @@ import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nandaiqbalh.muppi.core.domain.model.SeeAllSource
 import com.nandaiqbalh.muppi.core.presentation.components.HeaderText
 import com.nandaiqbalh.muppi.core.presentation.components.IconChip
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.home_feature.home.presentation.component.NowPlayingSection
 import com.nandaiqbalh.muppi.home_feature.home.presentation.component.SeriesOnAirSection
 import com.nandaiqbalh.muppi.home_feature.home.presentation.component.TopRatedSection
@@ -151,7 +151,7 @@ fun HomeScreen(
 				}
 			)
 
-			Spacer(modifier = Modifier.height(16.dp))
+			Spacer(modifier = Modifier.height(100.dp))
 
 		}
 	}

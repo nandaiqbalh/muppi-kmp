@@ -26,10 +26,10 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.presentation.components.VerticalGradientBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.inactiveColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryBackground
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryColor
-import com.nandaiqbalh.muppi.core.presentation.utils.primaryFont
+import com.nandaiqbalh.muppi.core.presentation.inactiveColor
+import com.nandaiqbalh.muppi.core.presentation.primaryBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryColor
+import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.animation.circular.CircularRevealPlugin
