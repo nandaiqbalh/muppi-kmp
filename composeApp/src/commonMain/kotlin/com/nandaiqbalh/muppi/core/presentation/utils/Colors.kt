@@ -23,7 +23,7 @@ fun String.toColor(): Color {
 }
 
 
-val primaryBackground = "#111111".toColor()
+val primaryBackground = "#202020".toColor()
 val primaryColor = "#2497FE".toColor()
 val onBackground = "#2A2E31".toColor()
 val primaryFont = "#EFF0F9".toColor()

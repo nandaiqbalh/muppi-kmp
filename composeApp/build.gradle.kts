@@ -47,7 +47,7 @@ kotlin {
         commonMain.dependencies {
             implementation(compose.runtime)
             implementation(compose.foundation)
-            implementation(compose.material)
+            implementation(compose.material3)
             implementation(compose.ui)
             implementation(compose.components.resources)
             implementation(compose.components.uiToolingPreview)
@@ -72,6 +72,12 @@ kotlin {
 
             api(libs.datastore.preferences)
             api(libs.datastore)
+
+            implementation(libs.landscapist.coil)
+            implementation(libs.landscapist.animation)
+
+            implementation(libs.kotlinx.datetime)
+
         }
 
         nativeMain.dependencies {
@@ -113,6 +119,7 @@ android {
 
 dependencies {
     implementation(libs.androidx.animation.core.android)
-    debugImplementation(compose.uiTooling)
+	implementation(libs.androidx.foundation.layout.android)
+	debugImplementation(compose.uiTooling)
 }
 

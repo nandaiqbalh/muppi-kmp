@@ -21,4 +21,7 @@
 
     <string name="desc_logo_splash">Logo Splash Screen</string>
 
+    <string name="tv_error_general">Oops! Something went wrong.</string>
+
+
 </resources>
