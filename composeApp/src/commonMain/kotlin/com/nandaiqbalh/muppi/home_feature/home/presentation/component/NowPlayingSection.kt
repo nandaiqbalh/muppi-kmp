@@ -17,6 +17,7 @@ import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 
 @Composable
 fun NowPlayingSection(
+	modifier: Modifier = Modifier.fillMaxWidth(),
 	moviesState: UiState<List<Movie>>,
 	onItemClick: (Int) -> Unit,  // To handle item click
 ) {
@@ -27,8 +28,7 @@ fun NowPlayingSection(
 	)
 
 	Column(
-		modifier = Modifier
-			.fillMaxWidth(),
+		modifier = modifier.fillMaxWidth(),
 		horizontalAlignment = Alignment.CenterHorizontally
 	) {
 
@@ -39,7 +39,8 @@ fun NowPlayingSection(
 					state = pagerState,
 					modifier = Modifier.fillMaxWidth(),
 				) { pageIndex ->
-					NowPlayingItem(movie = moviesState.data[pageIndex], onItemClick = onItemClick)
+					val shuffledMovies = moviesState.data.shuffled()
+					NowPlayingItem(movie = shuffledMovies[pageIndex], onItemClick = onItemClick)
 				}
 
 			}

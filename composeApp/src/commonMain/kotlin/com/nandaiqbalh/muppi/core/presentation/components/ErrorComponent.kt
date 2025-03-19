@@ -1,15 +1,23 @@
 package com.nandaiqbalh.muppi.core.presentation.components
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.slideInHorizontally
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
@@ -18,8 +26,9 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
+import kotlinx.coroutines.delay
 import muppi.composeapp.generated.resources.Res
-import muppi.composeapp.generated.resources.ic_failed
+import muppi.composeapp.generated.resources.ic_error_general
 import muppi.composeapp.generated.resources.nunito_medium
 import muppi.composeapp.generated.resources.tv_error_general
 import org.jetbrains.compose.resources.Font
@@ -30,36 +39,52 @@ import org.jetbrains.compose.resources.stringResource
 fun ErrorComponent(
 	modifier: Modifier = Modifier,
 ) {
+
+	var isVisible by remember { mutableStateOf(false) }
+
+	LaunchedEffect(Unit){
+		delay(200)
+		isVisible = true
+	}
+
 	Box(
 		modifier = modifier,
 		contentAlignment = Alignment.Center
 	) {
-
-		Column(
-			modifier = Modifier
-				.fillMaxSize(),
-			horizontalAlignment = Alignment.CenterHorizontally,
-			verticalArrangement = Arrangement.Center
+		// Animated visibility for the Column only (Slide-in from left + Fade-in)
+		AnimatedVisibility(
+			visible = isVisible, // Always visible but animated on first appearance
+			enter = slideInHorizontally(
+				initialOffsetX = { -it },  // Start from left side (negative X-axis)
+				animationSpec = tween(durationMillis = 2000)  // Control speed
+			) + fadeIn(animationSpec = tween(durationMillis = 1500))  // Add fade-in effect
 		) {
-
-			Image(
-				painter = painterResource(Res.drawable.ic_failed),
-				contentDescription = null,
-			)
-
-			Spacer(modifier = Modifier.height(4.dp))
-
-			Text(
-				modifier = Modifier
-					.fillMaxWidth(),
-				text = stringResource(Res.string.tv_error_general),
-				style = TextStyle(
-					fontFamily = FontFamily(Font(Res.font.nunito_medium)),
-					fontSize = 10.sp,
-					color = primaryFont,
-					textAlign = TextAlign.Center
+			Column(
+				modifier = Modifier.fillMaxWidth(),
+				horizontalAlignment = Alignment.CenterHorizontally,
+				verticalArrangement = Arrangement.Center
+			) {
+				// Error Icon
+				Image(
+					modifier = Modifier,
+					painter = painterResource(Res.drawable.ic_error_general),
+					contentDescription = null,
 				)
-			)
+
+				Spacer(modifier = Modifier.height(4.dp))
+
+				// Error Text
+				Text(
+					modifier = Modifier,
+					text = stringResource(Res.string.tv_error_general),
+					style = TextStyle(
+						fontFamily = FontFamily(Font(Res.font.nunito_medium)),
+						fontSize = 13.sp,
+						color = primaryFont,
+						textAlign = TextAlign.Center
+					)
+				)
+			}
 		}
 	}
 }

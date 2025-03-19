@@ -36,7 +36,7 @@ fun HeaderText(
 			text = title,
 			style = TextStyle(
 				fontFamily = FontFamily(Font(Res.font.nunito_medium)),
-				fontSize = 16.sp,
+				fontSize = 20.sp,
 				color = primaryFont,
 			)
 		)

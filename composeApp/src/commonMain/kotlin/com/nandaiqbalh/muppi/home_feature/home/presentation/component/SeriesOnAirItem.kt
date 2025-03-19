@@ -128,7 +128,7 @@ fun SeriesOnAirItem(
 			overflow = TextOverflow.Ellipsis,
 			style = TextStyle(
 				fontFamily = FontFamily(Font(Res.font.nunito_medium)),
-				fontSize = 13.sp,
+				fontSize = 16.sp,
 				color = primaryFont,
 				textAlign = TextAlign.Start
 			)

@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -30,6 +31,7 @@ import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 import com.nandaiqbalh.muppi.core.presentation.components.shimmerBackground
 import com.nandaiqbalh.muppi.core.presentation.onBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
+import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes
 import com.skydoves.landscapist.ImageOptions
@@ -53,7 +55,7 @@ fun TopRatedItem(
 	Column(
 		modifier = Modifier
 			.width(140.dp)
-			.height(270.dp)
+			.height(280.dp)
 	){
 		CoilImage(
 			imageModel = {
@@ -129,7 +131,7 @@ fun TopRatedItem(
 			overflow = TextOverflow.Ellipsis,
 			style = TextStyle(
 				fontFamily = FontFamily(Font(Res.font.nunito_medium)),
-				fontSize = 13.sp,
+				fontSize = 16.sp,
 				color = primaryFont,
 				textAlign = TextAlign.Start
 			)
@@ -148,12 +150,14 @@ fun TopRatedItem(
 				style = TextStyle(
 					fontFamily = FontFamily(Font(Res.font.nunito_medium)),
 					fontSize = 13.sp,
-					color = primaryFont,
+					color = primaryColor,
 					textAlign = TextAlign.Start
 				)
 			)
 
 			Text(
+				modifier = Modifier
+					.offset(y = 2.dp),
 				text = " /10",
 				maxLines = 2,
 				overflow = TextOverflow.Ellipsis,
