@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import com.codingfeline.buildkonfig.compiler.FieldSpec
 import org.jetbrains.kotlin.gradle.ExperimentalKotlinGradlePluginApi
 import org.jetbrains.kotlin.gradle.dsl.JvmTarget
@@ -13,14 +14,16 @@ plugins {
     alias(libs.plugins.buildkonfig)
 }
 
-val tmdbApiKey: String? = project.findProperty("TMDB_API_KEY") as String?
-
 buildkonfig {
     packageName = "com.nandaiqbalh.muppi"  // Your package name
+    objectName = "MuppiAppSharedConfig"
+    exposeObjectWithName = "MuppiAppSharedConfig"
 
     // Ensure to use the TMDB API key securely via `local.properties`
     defaultConfigs {
-        buildConfigField(FieldSpec.Type.STRING, "TMDB_API_KEY", "\"${tmdbApiKey ?: ""}\"")
+        val tmdbApiKey: String = gradleLocalProperties(rootDir, providers).getProperty("TMDB_API_KEY")
+
+        buildConfigField(FieldSpec.Type.STRING, "TMDB_API_KEY", tmdbApiKey ?: "")
     }
 }
 

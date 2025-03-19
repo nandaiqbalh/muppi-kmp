@@ -1,49 +1,20 @@
-package id.rawlabs.rnd.spacesofttoken
+package com.nandaiqbalh.muppi.core
 
-import com.mmk.kmpnotifier.notification.NotifierManager
-import com.mmk.kmpnotifier.notification.configuration.NotificationPlatformConfiguration
-import com.russhwolf.settings.ExperimentalSettingsImplementation
-import com.russhwolf.settings.KeychainSettings
-import com.russhwolf.settings.Settings
-import id.rawlabs.rnd.spacesofttoken.data.base.model.DeviceInfo
-import id.rawlabs.rnd.spacesofttoken.utils.logging
-import io.ktor.client.HttpClient
-import io.ktor.client.engine.darwin.Darwin
+import com.nandaiqbalh.muppi.core.domain.DeviceInfo
 import kotlinx.cinterop.ByteVar
 import kotlinx.cinterop.ExperimentalForeignApi
 import kotlinx.cinterop.alloc
 import kotlinx.cinterop.allocArray
 import kotlinx.cinterop.memScoped
 import kotlinx.cinterop.ptr
-import kotlinx.cinterop.refTo
 import kotlinx.cinterop.toKString
 import kotlinx.cinterop.value
-import platform.CoreCrypto.CCHmac
-import platform.CoreCrypto.CCHmacAlgorithm
-import platform.CoreCrypto.CC_SHA256_DIGEST_LENGTH
-import platform.CoreCrypto.kCCHmacAlgSHA256
-import platform.Foundation.NSDate
-import platform.Foundation.NSString
-import platform.Foundation.NSUTF8StringEncoding
-import platform.Foundation.cStringUsingEncoding
-import platform.Foundation.lengthOfBytesUsingEncoding
-import platform.Foundation.stringWithFormat
-import platform.Foundation.timeIntervalSince1970
 import platform.UIKit.UIDevice
 import platform.darwin.sysctlbyname
 import platform.posix.size_tVar
 
 class IOSPlatform: Platform {
 	override val name: String = UIDevice.currentDevice.systemName() + " " + UIDevice.currentDevice.systemVersion
-	override fun getHttpClientEngine(forMultipartData: Boolean): HttpClient {
-		return HttpClient(Darwin) {
-			engine {
-				configureRequest {
-					setAllowsCellularAccess(true)
-				}
-			}
-		}
-	}
 
 	override fun getDevicePlatform(): String {
 		return UIDevice.currentDevice.systemName() + "-" + UIDevice.currentDevice.systemVersion + "-" + getDeviceModel()
@@ -68,16 +39,6 @@ class IOSPlatform: Platform {
 }
 
 actual fun getPlatform(): Platform = IOSPlatform()
-
-
-@OptIn(ExperimentalUnsignedTypes::class)
-fun stringFromResult(result: UByteArray, length: Int): String {
-	val hash = StringBuilder()
-	for (index in 0 until length) {
-		hash.append(NSString.stringWithFormat("%02x", result[index]))
-	}
-	return hash.toString()
-}
 
 private fun getDeviceModel(): String {
 	val deviceIdentifier = getDeviceIdentifier() ?: return "Unknown iPhone"

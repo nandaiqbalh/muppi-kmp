@@ -1,20 +1,16 @@
 package com.nandaiqbalh.muppi.home_feature.home.presentation
 
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import kotlin.random.Random
+import com.nandaiqbalh.muppi.core.presentation.UiState
 
 data class HomeScreenState(
-	val isNowPlayingLoading: Boolean = true,
-	val isTopRatedLoading: Boolean = true,
-	val isUpcomingMoviesLoading: Boolean = true,
-	val isSeriesOnAirLoading: Boolean = true,
-	val nowPlaying: List<Movie> = dummyMovies,
-	val topRated: List<Movie> = dummyMovies.shuffled(),
-	val seriesOnAir: List<Movie> = dummyMovies.shuffled(Random(4)),
-	val upcomingMovies: List<Movie> = dummyMovies.shuffled(Random(10))
+	var nowPlaying: UiState<List<Movie>> = UiState.Initial,
+	val topRated: UiState<List<Movie>> = UiState.Initial,
+	val upcomingMovies: UiState<List<Movie>> = UiState.Initial,
+	val onAirTv: UiState<List<Movie>> = UiState.Initial,
 )
 
-val dummyMovies = listOf(
+var dummyMovies = listOf(
 	Movie(
 		adult = false,
 		backdropPath = "/gFFqWsjLjRfipKzlzaYPD097FNC.jpg",

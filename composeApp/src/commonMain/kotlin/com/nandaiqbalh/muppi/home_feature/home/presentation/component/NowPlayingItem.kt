@@ -25,6 +25,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
+import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 import com.nandaiqbalh.muppi.core.presentation.components.VerticalGradientBackground
 import com.nandaiqbalh.muppi.core.presentation.inactiveColor
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
@@ -107,6 +108,11 @@ fun NowPlayingItem(
 			component = rememberImageComponent {
 				+CircularRevealPlugin(
 					duration = 1000
+				)
+			},
+			loading = {
+				PulseAnimation(
+					modifier = Modifier.height(350.dp).fillMaxWidth()
 				)
 			},
 			modifier = Modifier.height(350.dp).fillMaxWidth()

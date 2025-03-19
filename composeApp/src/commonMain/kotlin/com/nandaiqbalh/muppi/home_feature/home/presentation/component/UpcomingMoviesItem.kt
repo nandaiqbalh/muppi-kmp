@@ -29,6 +29,7 @@ import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.domain.model.getGenreNamesByIds
 import com.nandaiqbalh.muppi.core.presentation.components.GenreChip
+import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 import com.nandaiqbalh.muppi.core.presentation.components.VerticalGradientBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
@@ -110,6 +111,11 @@ fun UpcomingMoviesItem(
 			component = rememberImageComponent {
 				+CircularRevealPlugin(
 					duration = 1000
+				)
+			},
+			loading = {
+				PulseAnimation(
+					modifier = Modifier.height(185.dp).width(270.dp)
 				)
 			},
 			modifier = Modifier.width(270.dp).height(185.dp)

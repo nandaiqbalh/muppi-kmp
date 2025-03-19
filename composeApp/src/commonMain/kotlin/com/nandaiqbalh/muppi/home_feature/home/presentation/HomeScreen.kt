@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -41,6 +42,13 @@ fun HomeScreenRoot(
 
 	val state by viewModel.state.collectAsStateWithLifecycle()
 
+	LaunchedEffect(Unit){
+		viewModel.getNowPlayingMovies()
+		viewModel.getUpcomingMovies()
+		viewModel.getTopRatedMovies()
+		viewModel.getOnAirTV()
+	}
+
 	HomeScreen(
 		state = state,
 		onAction = { action ->
@@ -66,94 +74,96 @@ fun HomeScreen(
 	onAction: (HomeScreenAction) -> Unit,
 ) {
 
-	LazyColumn(
+	Box(
 		modifier = Modifier
 			.fillMaxSize()
-			.background(primaryBackground)
-			.navigationBarsPadding()
-	) {
+	){
 
-		item {
-			// now playing
+		LazyColumn(
+			modifier = Modifier
+				.fillMaxSize()
+				.background(primaryBackground)
+				.navigationBarsPadding()
+		) {
 
-			Box {
+			item {
+				// now playing
 				NowPlayingSection(
-					state.nowPlaying.take(5),
+					state.nowPlaying,
 					onItemClick = { id ->
 						onAction(HomeScreenAction.OnClickItem(id))
 					}
 				)
 
-				IconChip(
-					logo = Res.drawable.iv_logo_home,
-					text = stringResource(Res.string.app_name),
-					modifier = Modifier
-						.align(Alignment.TopStart)
-						.statusBarsPadding()
-						.padding(start = 16.dp, top = 8.dp)
+				Spacer(modifier = Modifier.height(16.dp))
+
+				HeaderText(
+					title = stringResource(Res.string.tv_top_rated),
+					actionText = stringResource(Res.string.tv_see_all),
+					onActionClick = {
+						onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.TopRated))
+					}
 				)
+
+				Spacer(modifier = Modifier.height(8.dp))
+
+				TopRatedSection(
+					moviesState = state.topRated,
+					onItemClick = { id ->
+						onAction(HomeScreenAction.OnClickItem(id))
+					}
+				)
+
+				Spacer(modifier = Modifier.height(16.dp))
+
+				HeaderText(
+					title = stringResource(Res.string.tv_upcoming_movies),
+					actionText = stringResource(Res.string.tv_see_all),
+					onActionClick = {
+						onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.UpcomingMovies))
+					}
+				)
+
+				Spacer(modifier = Modifier.height(8.dp))
+
+				UpComingMoviesSection(
+					moviesState = state.upcomingMovies,
+					onItemClick = { id ->
+						onAction(HomeScreenAction.OnClickItem(id))
+					}
+				)
+
+				Spacer(modifier = Modifier.height(16.dp))
+
+				HeaderText(
+					title = stringResource(Res.string.tv_series_on_air),
+					actionText = stringResource(Res.string.tv_see_all),
+					onActionClick = {
+						onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.SeriesOnAir))
+					}
+				)
+
+				Spacer(modifier = Modifier.height(8.dp))
+
+				SeriesOnAirSection(
+					moviesState = state.onAirTv,
+					onItemClick = { id ->
+						onAction(HomeScreenAction.OnClickItem(id))
+					}
+				)
+
+				Spacer(modifier = Modifier.height(100.dp))
+
 			}
-
-			Spacer(modifier = Modifier.height(16.dp))
-
-			HeaderText(
-				title = stringResource(Res.string.tv_top_rated),
-				actionText = stringResource(Res.string.tv_see_all),
-				onActionClick = {
-					onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.TopRated))
-				}
-			)
-
-			Spacer(modifier = Modifier.height(8.dp))
-
-			TopRatedSection(
-				movies = state.topRated,
-				onItemClick = { id ->
-					onAction(HomeScreenAction.OnClickItem(id))
-				}
-			)
-
-			Spacer(modifier = Modifier.height(16.dp))
-
-			HeaderText(
-				title = stringResource(Res.string.tv_upcoming_movies),
-				actionText = stringResource(Res.string.tv_see_all),
-				onActionClick = {
-					onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.UpcomingMovies))
-				}
-			)
-
-			Spacer(modifier = Modifier.height(8.dp))
-
-			UpComingMoviesSection(
-				movies = state.topRated,
-				onItemClick = { id ->
-					onAction(HomeScreenAction.OnClickItem(id))
-				}
-			)
-
-			Spacer(modifier = Modifier.height(16.dp))
-
-			HeaderText(
-				title = stringResource(Res.string.tv_series_on_air),
-				actionText = stringResource(Res.string.tv_see_all),
-				onActionClick = {
-					onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.SeriesOnAir))
-				}
-			)
-
-			Spacer(modifier = Modifier.height(8.dp))
-
-			SeriesOnAirSection(
-				movies = state.topRated,
-				onItemClick = { id ->
-					onAction(HomeScreenAction.OnClickItem(id))
-				}
-			)
-
-			Spacer(modifier = Modifier.height(100.dp))
-
 		}
-	}
 
+		IconChip(
+			logo = Res.drawable.iv_logo_home,
+			text = stringResource(Res.string.app_name),
+			modifier = Modifier
+				.align(Alignment.TopStart)
+				.statusBarsPadding()
+				.padding(start = 16.dp, top = 8.dp)
+		)
+	}
 }

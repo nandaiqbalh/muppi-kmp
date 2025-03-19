@@ -7,9 +7,8 @@ fun initKoin(config: KoinAppDeclaration? = null) {
 	startKoin {
 		config?.invoke((this))
 		modules(
-			sharedModules,
 			platformModules,
-			remoteModule
+			sharedModules,
 		)
 	}
 }

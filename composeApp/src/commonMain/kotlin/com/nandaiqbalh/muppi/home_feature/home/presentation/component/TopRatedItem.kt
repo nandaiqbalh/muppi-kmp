@@ -26,6 +26,8 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
+import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
+import com.nandaiqbalh.muppi.core.presentation.components.shimmerBackground
 import com.nandaiqbalh.muppi.core.presentation.onBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
@@ -102,6 +104,11 @@ fun TopRatedItem(
 			component = rememberImageComponent {
 				+CircularRevealPlugin(
 					duration = 1000
+				)
+			},
+			loading = {
+				PulseAnimation(
+					modifier = Modifier.height(220.dp).width(140.dp)
 				)
 			},
 			modifier = Modifier.height(220.dp).width(140.dp)
