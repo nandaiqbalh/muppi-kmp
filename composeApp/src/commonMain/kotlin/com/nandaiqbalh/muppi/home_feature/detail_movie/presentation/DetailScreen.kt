@@ -21,15 +21,15 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.component.DetailMovieContentSection
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.component.DetailContentSection
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_back
 import muppi.composeapp.generated.resources.ic_save_inactive
 import org.jetbrains.compose.resources.painterResource
 
 @Composable
-fun DetailMovieScreenRoot(
-	viewModel: DetailMovieViewModel,
+fun DetailScreenRoot(
+	viewModel: DetailViewModel,
 	movieId: Int,
 	isMovie: Boolean,
 	onClickBack: () -> Unit,
@@ -42,17 +42,18 @@ fun DetailMovieScreenRoot(
 		viewModel.getDetailMovie(movieId, isMovie)
 		viewModel.getMovieCasts(movieId, isMovie)
 		viewModel.getSimilarMovies(movieId, isMovie)
+		viewModel.getVideos(movieId, isMovie)
 	}
 
-	DetailMovieScreen(
+	DetailScreen(
 		state = state,
 		onAction = { action ->
 			when (action) {
-				is DetailMovieAction.OnClickBack -> {
+				is DetailAction.OnClickBack -> {
 					onClickBack()
 				}
 
-				is DetailMovieAction.OnClickCast -> {
+				is DetailAction.OnClickCast -> {
 					onClickCast(action.id)
 				}
 
@@ -68,9 +69,9 @@ fun DetailMovieScreenRoot(
 }
 
 @Composable
-fun DetailMovieScreen(
-	state: DetailMovieState,
-	onAction: (DetailMovieAction) -> Unit,
+fun DetailScreen(
+	state: DetailState,
+	onAction: (DetailAction) -> Unit,
 ) {
 
 	Box(
@@ -92,7 +93,7 @@ fun DetailMovieScreen(
 					Image(
 						modifier = Modifier.clip(CircleShape)
 							.clickable {
-								onAction(DetailMovieAction.OnClickBack)
+								onAction(DetailAction.OnClickBack)
 							},
 						painter = painterResource(Res.drawable.ic_back),
 						contentDescription = null,
@@ -103,7 +104,7 @@ fun DetailMovieScreen(
 						modifier = Modifier.clip(CircleShape)
 							.clickable {
 								if (state.detailMovie is UiState.Success) {
-									onAction(DetailMovieAction.OnClickSave(state.detailMovie.data))
+									onAction(DetailAction.OnClickSave(state.detailMovie.data))
 								}
 							},
 						painter = painterResource(Res.drawable.ic_save_inactive),
@@ -113,13 +114,13 @@ fun DetailMovieScreen(
 			}
 		) {
 
-			DetailMovieContentSection(
+			DetailContentSection(
 				state = state,
 				onClickCastItem = { id ->
-					onAction(DetailMovieAction.OnClickCast(id))
+					onAction(DetailAction.OnClickCast(id))
 				},
 				onClickSimilarMovieItem = { id ->
-					onAction(DetailMovieAction.OnClickSimilarMovie(id))
+					onAction(DetailAction.OnClickSimilar(id))
 				}
 			)
 

@@ -19,8 +19,8 @@ import com.nandaiqbalh.muppi.core.utils.orFalse
 import com.nandaiqbalh.muppi.core.utils.orTrue
 import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.explore_feature.presentation.ExploreScreenRoot
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailMovieScreenRoot
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailMovieViewModel
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailScreenRoot
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailViewModel
 import com.nandaiqbalh.muppi.home_feature.home.presentation.HomeScreenRoot
 import com.nandaiqbalh.muppi.home_feature.home.presentation.HomeScreenViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenRoot
@@ -86,13 +86,13 @@ fun App() {
 					}
 
 					composable<Route.DetailMovieScreen> {
-						val viewModel = koinViewModel<DetailMovieViewModel>()
+						val viewModel = koinViewModel<DetailViewModel>()
 
 						// Get the movieId from the nav arguments
 						val movieId = it.arguments?.getInt("movieId")?.orZero()
 						val isMovie = it.arguments?.getBoolean("isMovie")?.orTrue()
 
-						DetailMovieScreenRoot(
+						DetailScreenRoot(
 							viewModel = viewModel,
 							movieId = movieId.orZero(),
 							isMovie = isMovie.orFalse(),

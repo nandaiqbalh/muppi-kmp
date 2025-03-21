@@ -3,15 +3,17 @@ package com.nandaiqbalh.muppi.di
 import com.nandaiqbalh.muppi.core.data.remote.HttpClientFactory
 import com.nandaiqbalh.muppi.core.data.remote.setupKermit
 import com.nandaiqbalh.muppi.core.getPlatform
-import com.nandaiqbalh.muppi.home_feature.detail_movie.data.repository.DetailMovieRepositoryImpl
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.repository.DetailMovieRepository
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailMovieUseCase
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailMovieUseCaseImpl
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetMovieCastsUseCase
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetMovieCastsUseCaseImpl
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarMoviesUseCase
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarMoviesUseCaseImpl
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailMovieViewModel
+import com.nandaiqbalh.muppi.home_feature.detail_movie.data.repository.DetailRepositoryImpl
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.repository.DetailRepository
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailUseCaseImpl
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastsUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastsUseCaseImpl
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarUseCaseImpl
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetVideosUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetVideosUseCaseImpl
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailViewModel
 import com.nandaiqbalh.muppi.home_feature.home.data.repository.HomeRepositoryImpl
 import com.nandaiqbalh.muppi.home_feature.home.domain.repository.HomeRepository
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetNowPlayingMoviesUseCase
@@ -41,7 +43,7 @@ val sharedModules = module {
 
 	// repository
 	singleOf(::HomeRepositoryImpl).bind<HomeRepository>()
-	singleOf(::DetailMovieRepositoryImpl).bind<DetailMovieRepository>()
+	singleOf(::DetailRepositoryImpl).bind<DetailRepository>()
 
 	// use case
 	singleOf(::GetNowPlayingMoviesUseCaseImpl).bind<GetNowPlayingMoviesUseCase>()
@@ -49,12 +51,13 @@ val sharedModules = module {
 	singleOf(::GetUpcomingMoviesUseCaseImpl).bind<GetUpcomingMoviesUseCase>()
 	singleOf(::GetOnAirTVUseCaseImpl).bind<GetOnAirTVUseCase>()
 
-	singleOf(::GetDetailMovieUseCaseImpl).bind<GetDetailMovieUseCase>()
-	singleOf(::GetSimilarMoviesUseCaseImpl).bind<GetSimilarMoviesUseCase>()
-	singleOf(::GetMovieCastsUseCaseImpl).bind<GetMovieCastsUseCase>()
+	singleOf(::GetDetailUseCaseImpl).bind<GetDetailUseCase>()
+	singleOf(::GetSimilarUseCaseImpl).bind<GetSimilarUseCase>()
+	singleOf(::GetCastsUseCaseImpl).bind<GetCastsUseCase>()
+	singleOf(::GetVideosUseCaseImpl).bind<GetVideosUseCase>()
 
 	// view model
 	viewModelOf(::SplashScreenViewModel)
 	viewModelOf(::HomeScreenViewModel)
-	viewModelOf(::DetailMovieViewModel)
+	viewModelOf(::DetailViewModel)
 }

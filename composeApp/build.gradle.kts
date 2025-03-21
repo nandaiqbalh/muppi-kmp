@@ -99,6 +99,8 @@ kotlin {
 
             api(libs.kermit)
 
+            implementation(libs.mediaplayer.kmp)
+
         }
 
         nativeMain.dependencies {

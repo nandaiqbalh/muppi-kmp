@@ -52,6 +52,7 @@ fun MovieWithTitleItem(
 	Column(
 		modifier = modifier
 			.width(140.dp)
+			.height(290.dp)
 	){
 		CoilImage(
 			imageModel = {

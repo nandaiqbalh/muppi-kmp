@@ -40,7 +40,7 @@ import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes
 import com.nandaiqbalh.muppi.core.utils.toFormattedDate
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailMovieState
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailState
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.animation.circular.CircularRevealPlugin
 import com.skydoves.landscapist.coil3.CoilImage
@@ -62,8 +62,8 @@ import org.jetbrains.compose.resources.stringResource
 
 @OptIn(ExperimentalLayoutApi::class)
 @Composable
-fun DetailMovieContentSection(
-	state: DetailMovieState,
+fun DetailContentSection(
+	state: DetailState,
 	onClickCastItem: (Int) -> Unit,
 	onClickSimilarMovieItem: (Int) -> Unit
 ) {
@@ -253,12 +253,11 @@ fun DetailMovieContentSection(
 									.fillMaxWidth()
 							) {
 
-								// Ambil maksimal 3 genre jika lebih dari 3, jika kurang atau sama dengan 3 ambil semua
 								val genresToDisplay = detailMovie.genres.take(3)
 
 								genresToDisplay.forEach { genre ->
 									GenreChip(
-										genre = genre.name, // Pastikan 'genre' mengacu pada objek yang memiliki properti 'name'
+										genre = genre.name,
 										modifier = Modifier
 									)
 
@@ -298,7 +297,9 @@ fun DetailMovieContentSection(
 
 					Spacer(modifier = Modifier.height(8.dp))
 
-					// media player for trailer
+					VideoSection(
+						videosState = state.videos
+					)
 
 					Spacer(modifier = Modifier.height(16.dp))
 
