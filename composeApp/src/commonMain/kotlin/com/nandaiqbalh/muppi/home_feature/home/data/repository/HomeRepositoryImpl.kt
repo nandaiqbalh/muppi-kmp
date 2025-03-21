@@ -6,9 +6,9 @@ import com.nandaiqbalh.muppi.core.data.remote.NetworkResult
 import com.nandaiqbalh.muppi.core.data.remote.toResultFlow
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes
-import com.nandaiqbalh.muppi.home_feature.home.data.dto.MoviesDto
-import com.nandaiqbalh.muppi.home_feature.home.data.dto.SeriesDto
-import com.nandaiqbalh.muppi.home_feature.home.data.mapper.toMovies
+import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
+import com.nandaiqbalh.muppi.core.data.dto.SeriesDto
+import com.nandaiqbalh.muppi.core.data.mapper.toMovies
 import com.nandaiqbalh.muppi.home_feature.home.domain.repository.HomeRepository
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body

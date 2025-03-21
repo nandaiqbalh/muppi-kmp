@@ -17,6 +17,9 @@ sealed interface Route {
 	data object HomeScreen: Route
 
 	@Serializable
+	data object DetailMovieScreen: Route
+
+	@Serializable
 	data object ExploreGraph: Route
 
 	@Serializable

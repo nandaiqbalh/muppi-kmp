@@ -58,6 +58,9 @@ fun UpcomingMoviesItem(
 	Box(
 		modifier = Modifier
 			.width(270.dp).height(185.dp)
+			.clickable {
+				onItemClick(movie.id)
+			}
 	) {
 
 		CoilImage(
@@ -120,10 +123,7 @@ fun UpcomingMoviesItem(
 			},
 			modifier = Modifier.width(270.dp).height(185.dp)
 				.clip(RoundedCornerShape(16.dp))
-				.background(primaryBackground)
-				.clickable {
-					onItemClick(movie.id)
-				},
+				.background(primaryBackground),
 		)
 
 		VerticalGradientBackground(

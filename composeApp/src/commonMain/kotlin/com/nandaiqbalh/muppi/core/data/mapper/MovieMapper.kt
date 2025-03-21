@@ -1,10 +1,10 @@
-package com.nandaiqbalh.muppi.home_feature.home.data.mapper
+package com.nandaiqbalh.muppi.core.data.mapper
 
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.utils.orFalse
 import com.nandaiqbalh.muppi.core.utils.orZero
-import com.nandaiqbalh.muppi.home_feature.home.data.dto.MoviesDto
-import com.nandaiqbalh.muppi.home_feature.home.data.dto.SeriesDto
+import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
+import com.nandaiqbalh.muppi.core.data.dto.SeriesDto
 
 // Extension function to map MoviesDto to a list of Movie objects
 fun MoviesDto.toMovies(): List<Movie> {

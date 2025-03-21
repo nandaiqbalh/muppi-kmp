@@ -10,6 +10,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.presentation.primaryColor
@@ -56,4 +58,25 @@ fun HeaderText(
 
 
 	}
+}
+
+@Composable
+fun SingleHeaderText(
+	title: String,
+) {
+
+	Text(
+		modifier = Modifier
+			.fillMaxWidth()
+			.padding(horizontal = 16.dp),
+		maxLines = 1,
+		overflow = TextOverflow.Ellipsis,
+		text = title,
+		style = TextStyle(
+			fontFamily = FontFamily(Font(Res.font.nunito_medium)),
+			fontSize = 20.sp,
+			color = primaryFont,
+			textAlign = TextAlign.Start
+		)
+	)
 }

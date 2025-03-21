@@ -10,13 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.core.view.WindowInsetsControllerCompat
-import androidx.navigation.compose.rememberNavController
 import com.nandaiqbalh.muppi.app.App
-import com.nandaiqbalh.muppi.app.BottomNavigationBar
-import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.home_feature.home.presentation.component.NowPlayingItem
-import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreen
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {

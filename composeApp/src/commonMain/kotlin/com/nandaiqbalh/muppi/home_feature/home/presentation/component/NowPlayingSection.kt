@@ -39,8 +39,8 @@ fun NowPlayingSection(
 					state = pagerState,
 					modifier = Modifier.fillMaxWidth(),
 				) { pageIndex ->
-					val shuffledMovies = moviesState.data.shuffled()
-					NowPlayingItem(movie = shuffledMovies[pageIndex], onItemClick = onItemClick)
+
+					NowPlayingItem(movie = moviesState.data[pageIndex], onItemClick = onItemClick)
 				}
 
 			}

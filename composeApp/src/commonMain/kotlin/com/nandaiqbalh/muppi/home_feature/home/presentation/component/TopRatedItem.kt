@@ -56,6 +56,9 @@ fun TopRatedItem(
 		modifier = Modifier
 			.width(140.dp)
 			.height(280.dp)
+			.clickable {
+				onItemClick(movie.id)
+			}
 	){
 		CoilImage(
 			imageModel = {
@@ -115,10 +118,7 @@ fun TopRatedItem(
 			},
 			modifier = Modifier.height(220.dp).width(140.dp)
 				.clip(RoundedCornerShape(16.dp))
-				.background(primaryBackground)
-				.clickable {
-					onItemClick(movie.id)
-				},
+				.background(primaryBackground),
 		)
 
 		Spacer(modifier = Modifier.height(8.dp))

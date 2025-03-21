@@ -1,6 +1,10 @@
 package com.nandaiqbalh.muppi.home_feature.home.presentation.component
 
-import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.runtime.Composable
@@ -10,7 +14,6 @@ import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.presentation.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
-import com.nandaiqbalh.muppi.core.presentation.components.shimmerBackground
 
 @Composable
 fun TopRatedSection(

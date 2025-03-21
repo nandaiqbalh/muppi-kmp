@@ -3,6 +3,7 @@ package com.nandaiqbalh.muppi.di
 import com.nandaiqbalh.muppi.core.data.remote.HttpClientFactory
 import com.nandaiqbalh.muppi.core.data.remote.setupKermit
 import com.nandaiqbalh.muppi.core.getPlatform
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailMovieViewModel
 import com.nandaiqbalh.muppi.home_feature.home.data.repository.HomeRepositoryImpl
 import com.nandaiqbalh.muppi.home_feature.home.domain.repository.HomeRepository
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetNowPlayingMoviesUseCase
@@ -39,4 +40,5 @@ val sharedModules = module {
 
 	viewModelOf(::SplashScreenViewModel)
 	viewModelOf(::HomeScreenViewModel)
+	viewModelOf(::DetailMovieViewModel)
 }
