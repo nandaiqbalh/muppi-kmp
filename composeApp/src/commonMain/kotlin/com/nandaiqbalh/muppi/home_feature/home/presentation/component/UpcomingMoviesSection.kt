@@ -1,6 +1,5 @@
 package com.nandaiqbalh.muppi.home_feature.home.presentation.component
 
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -12,10 +11,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.presentation.UiState
+import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
-import com.nandaiqbalh.muppi.core.presentation.components.shimmerBackground
 
 @Composable
 fun UpComingMoviesSection(

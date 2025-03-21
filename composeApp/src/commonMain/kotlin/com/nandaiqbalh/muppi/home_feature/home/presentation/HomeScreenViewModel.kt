@@ -2,7 +2,7 @@ package com.nandaiqbalh.muppi.home_feature.home.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nandaiqbalh.muppi.core.presentation.UiState
+import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetNowPlayingMoviesUseCase
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetOnAirTVUseCase
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetTopRatedMoviesUseCase

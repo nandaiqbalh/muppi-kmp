@@ -28,7 +28,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.nandaiqbalh.muppi.core.presentation.UiState
+import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
 import com.nandaiqbalh.muppi.core.presentation.components.GenreChip
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
@@ -150,7 +150,7 @@ fun DetailMovieContentSection(
 						)
 
 						VerticalGradientBackground(
-							height = 100,
+							height = 110,
 							modifier = Modifier.align(Alignment.BottomCenter)
 						)
 

@@ -2,7 +2,7 @@ package com.nandaiqbalh.muppi.home_feature.home.data.repository
 
 import com.nandaiqbalh.muppi.MuppiAppSharedConfig
 import com.nandaiqbalh.muppi.core.data.remote.ApiException
-import com.nandaiqbalh.muppi.core.data.remote.NetworkResult
+import com.nandaiqbalh.muppi.core.domain.NetworkResult
 import com.nandaiqbalh.muppi.core.data.remote.toResultFlow
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes

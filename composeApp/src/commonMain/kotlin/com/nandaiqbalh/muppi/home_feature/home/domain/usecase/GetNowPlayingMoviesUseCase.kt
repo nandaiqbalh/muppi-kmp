@@ -1,8 +1,8 @@
 package com.nandaiqbalh.muppi.home_feature.home.domain.usecase
 
-import com.nandaiqbalh.muppi.core.data.remote.NetworkResult
+import com.nandaiqbalh.muppi.core.domain.NetworkResult
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.presentation.UiState
+import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.home_feature.home.domain.repository.HomeRepository
 
 interface GetNowPlayingMoviesUseCase {

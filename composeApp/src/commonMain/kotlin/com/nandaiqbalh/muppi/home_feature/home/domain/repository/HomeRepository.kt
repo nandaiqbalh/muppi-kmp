@@ -1,6 +1,6 @@
 package com.nandaiqbalh.muppi.home_feature.home.domain.repository
 
-import com.nandaiqbalh.muppi.core.data.remote.NetworkResult
+import com.nandaiqbalh.muppi.core.domain.NetworkResult
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 

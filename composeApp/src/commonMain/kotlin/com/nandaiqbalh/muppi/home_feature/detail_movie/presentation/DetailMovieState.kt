@@ -3,7 +3,7 @@ package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation
 import com.nandaiqbalh.muppi.core.domain.model.Cast
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.presentation.UiState
+import com.nandaiqbalh.muppi.core.domain.UiState
 
 data class DetailMovieState(
 	val detailMovie: UiState<DetailMovie> = UiState.Initial,

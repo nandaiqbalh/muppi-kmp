@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.core.presentation
+package com.nandaiqbalh.muppi.core.domain
 
 sealed class UiState<out T> {
 

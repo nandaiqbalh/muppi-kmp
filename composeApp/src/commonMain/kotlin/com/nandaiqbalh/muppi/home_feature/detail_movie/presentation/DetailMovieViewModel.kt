@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.nandaiqbalh.muppi.core.data.dummies.dummyCastList
 import com.nandaiqbalh.muppi.core.data.dummies.dummyMovie
 import com.nandaiqbalh.muppi.core.data.dummies.dummyMovies
-import com.nandaiqbalh.muppi.core.presentation.UiState
+import com.nandaiqbalh.muppi.core.domain.UiState
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
