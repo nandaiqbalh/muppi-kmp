@@ -4,7 +4,6 @@ import com.nandaiqbalh.muppi.core.domain.model.Cast
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
 import com.nandaiqbalh.muppi.core.domain.model.Genre
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.domain.model.SpokenLanguage
 
 var dummyMovies = listOf(
 	Movie(
@@ -159,7 +158,6 @@ val thrillerGenre = Genre(id = 53, name = "Thriller")
 val crimeGenre = Genre(id = 80, name = "Crime")
 
 // Dummy Spoken Language Data
-val englishLanguage = SpokenLanguage(englishName = "English", iso6391 = "en", name = "English")
 
 // Dummy DetailMovie Data
 val dummyMovie = DetailMovie(
@@ -167,12 +165,10 @@ val dummyMovie = DetailMovie(
 	backdropPath = "/gFFqWsjLjRfipKzlzaYPD097FNC.jpg",
 	genres = listOf(actionGenre, thrillerGenre, crimeGenre),
 	id = 1126166,
-	originalLanguage = "en",
 	originalTitle = "Flight Risk",
 	overview = "A U.S. Marshal escorts a government witness to trial after he's accused of getting involved with a mob boss, only to discover that the pilot who is transporting them is also a hitman sent to assassinate the informant. After they subdue him, they're forced to fly together after discovering that there are others attempting to eliminate them.",
 	posterPath = "/q0bCG4NX32iIEsRFZqRtuvzNCyZ.jpg",
 	releaseDate = "2025-01-22",
-	spokenLanguages = listOf(englishLanguage),
 	title = "Flight Risk",
 	video = false,
 	voteAverage = 6.121,

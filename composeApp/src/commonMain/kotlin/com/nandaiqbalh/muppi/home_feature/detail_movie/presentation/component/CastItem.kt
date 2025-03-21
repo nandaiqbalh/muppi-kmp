@@ -2,7 +2,6 @@ package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -38,12 +37,9 @@ import com.skydoves.landscapist.coil3.CoilImage
 import com.skydoves.landscapist.components.rememberImageComponent
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_failed
-import muppi.composeapp.generated.resources.nunito_medium
 import muppi.composeapp.generated.resources.nunito_regular
-import muppi.composeapp.generated.resources.tv_error_general
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun CastItem(
@@ -53,7 +49,7 @@ fun CastItem(
 
 	Column(
 		modifier = modifier
-			.height(120.dp)
+			.height(135.dp)
 			.width(80.dp)
 	) {
 		CoilImage(
@@ -74,32 +70,10 @@ fun CastItem(
 					contentAlignment = Alignment.Center
 				) {
 
-					Column(
-						modifier = Modifier
-							.fillMaxSize(),
-						horizontalAlignment = Alignment.CenterHorizontally,
-						verticalArrangement = Arrangement.Center
-					) {
-
-						Image(
-							painter = painterResource(Res.drawable.ic_failed),
-							contentDescription = null,
-						)
-
-						Spacer(modifier = Modifier.height(4.dp))
-
-						Text(
-							modifier = Modifier
-								.fillMaxWidth(),
-							text = stringResource(Res.string.tv_error_general),
-							style = TextStyle(
-								fontFamily = FontFamily(Font(Res.font.nunito_medium)),
-								fontSize = 10.sp,
-								color = primaryFont,
-								textAlign = TextAlign.Center
-							)
-						)
-					}
+					Image(
+						painter = painterResource(Res.drawable.ic_failed),
+						contentDescription = null,
+					)
 				}
 			},
 			loading = {

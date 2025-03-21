@@ -37,7 +37,6 @@ class HomeScreenViewModel(
 		viewModelScope.launch {
 			updateState { it.copy(nowPlaying = UiState.Loading) }
 
-			delay(2000)
 			// Execute the use case
 			val uiState = getNowPlayingMoviesUseCase.execute(page)
 
@@ -50,7 +49,6 @@ class HomeScreenViewModel(
 	fun getTopRatedMovies(page: Int = 1) {
 		viewModelScope.launch {
 			updateState { it.copy(topRated = UiState.Loading) }
-			delay(3000)
 
 			// Execute the use case
 			val uiState = getTopRatedMoviesUseCase.execute(page)
@@ -65,7 +63,6 @@ class HomeScreenViewModel(
 		viewModelScope.launch {
 			updateState { it.copy(upcomingMovies = UiState.Loading) }
 
-			delay(4000)
 			// Execute the use case
 			val uiState = getUpcomingMoviesUseCase.execute(page)
 
@@ -79,7 +76,6 @@ class HomeScreenViewModel(
 		viewModelScope.launch {
 			updateState { it.copy(onAirTv = UiState.Loading) }
 
-			delay(4000)
 			// Execute the use case
 			val uiState = getOnAirTVUseCase.execute(page)
 

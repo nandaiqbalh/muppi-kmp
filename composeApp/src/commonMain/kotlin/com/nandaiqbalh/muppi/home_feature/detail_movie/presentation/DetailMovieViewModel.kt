@@ -6,13 +6,18 @@ import com.nandaiqbalh.muppi.core.data.dummies.dummyCastList
 import com.nandaiqbalh.muppi.core.data.dummies.dummyMovie
 import com.nandaiqbalh.muppi.core.data.dummies.dummyMovies
 import com.nandaiqbalh.muppi.core.domain.UiState
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailMovieUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetMovieCastsUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarMoviesUseCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class DetailMovieViewModel(
-
+	private val getDetailMovieUseCase: GetDetailMovieUseCase,
+	private val getSimilarMoviesUseCase: GetSimilarMoviesUseCase,
+	private val getMovieCastsUseCase: GetMovieCastsUseCase
 ) : ViewModel() {
 
 	private val _state = MutableStateFlow(DetailMovieState())
@@ -28,58 +33,43 @@ class DetailMovieViewModel(
 		}
 	}
 
-	init {
-		dummyDetail()
-		dummyCasts()
-		dummySimilarMovies()
-	}
-
-	private fun dummyDetail(){
-
+	fun getDetailMovie(movieId: Int) {
 		viewModelScope.launch {
 			updateState { it.copy(detailMovie = UiState.Loading) }
 
-			delay(3000)
 			// Execute the use case
-//			val uiState = getNowPlayingMoviesUseCase.execute(page)
+			val uiState = getDetailMovieUseCase.execute(movieId)
 
 			// Update the UI state
-			updateState { it.copy(detailMovie = UiState.Success(dummyMovie)) }
+			updateState { it.copy(detailMovie = uiState) }
 
 		}
-
 	}
 
-	private fun dummyCasts(){
-
-		viewModelScope.launch {
-			updateState { it.copy(casts = UiState.Loading) }
-
-			delay(5000)
-			// Execute the use case
-//			val uiState = getNowPlayingMoviesUseCase.execute(page)
-
-			// Update the UI state
-			updateState { it.copy(casts = UiState.Success(dummyCastList)) }
-
-		}
-
-	}
-
-	private fun dummySimilarMovies(){
-
+	fun getSimilarMovies(movieId: Int) {
 		viewModelScope.launch {
 			updateState { it.copy(similarMovies = UiState.Loading) }
 
-			delay(7000)
 			// Execute the use case
-//			val uiState = getNowPlayingMoviesUseCase.execute(page)
+			val uiState = getSimilarMoviesUseCase.execute(movieId)
 
 			// Update the UI state
-			updateState { it.copy(similarMovies = UiState.Success(dummyMovies)) }
+			updateState { it.copy(similarMovies = uiState) }
 
 		}
+	}
 
+	fun getMovieCasts(movieId: Int) {
+		viewModelScope.launch {
+			updateState { it.copy(casts = UiState.Loading) }
+
+			// Execute the use case
+			val uiState = getMovieCastsUseCase.execute(movieId)
+
+			// Update the UI state
+			updateState { it.copy(casts = uiState) }
+
+		}
 	}
 
 

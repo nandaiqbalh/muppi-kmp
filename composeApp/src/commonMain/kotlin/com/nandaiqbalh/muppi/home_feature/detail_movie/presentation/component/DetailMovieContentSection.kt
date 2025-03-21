@@ -150,7 +150,7 @@ fun DetailMovieContentSection(
 						)
 
 						VerticalGradientBackground(
-							height = 110,
+							height = 130,
 							modifier = Modifier.align(Alignment.BottomCenter)
 						)
 

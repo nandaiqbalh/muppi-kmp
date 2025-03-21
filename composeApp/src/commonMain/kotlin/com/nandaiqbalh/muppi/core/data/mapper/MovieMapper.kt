@@ -1,10 +1,12 @@
 package com.nandaiqbalh.muppi.core.data.mapper
 
+import com.nandaiqbalh.muppi.core.data.dto.DetailMovieDto
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.utils.orFalse
 import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
 import com.nandaiqbalh.muppi.core.data.dto.SeriesDto
+import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
 
 // Extension function to map MoviesDto to a list of Movie objects
 fun MoviesDto.toMovies(): List<Movie> {
@@ -27,6 +29,23 @@ fun MoviesDto.toMovies(): List<Movie> {
 			voteCount = movieDto.voteCount.orZero()
 		)
 	} ?: emptyList() // Return an empty list if results is null
+}
+
+fun DetailMovieDto.toDetailMovie(): DetailMovie {
+	return DetailMovie(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath.orEmpty(),
+		id = this.id.orZero(),
+		originalTitle = this.originalTitle.orEmpty(),
+		overview = this.overview.orEmpty(),
+		posterPath = this.posterPath.orEmpty(),
+		releaseDate = this.releaseDate.orEmpty(),
+		title = this.title.orEmpty(),
+		video = this.video.orFalse(),
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		genres = this.genres,
+	)
 }
 
 fun SeriesDto.toMovies(): List<Movie> {

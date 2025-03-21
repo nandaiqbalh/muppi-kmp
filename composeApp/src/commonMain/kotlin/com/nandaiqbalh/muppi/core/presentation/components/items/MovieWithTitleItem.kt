@@ -71,32 +71,10 @@ fun MovieWithTitleItem(
 					contentAlignment = Alignment.Center
 				){
 
-					Column(
-						modifier = Modifier
-							.fillMaxSize(),
-						horizontalAlignment = Alignment.CenterHorizontally,
-						verticalArrangement = Arrangement.Center
-					){
-
-						Image(
-							painter = painterResource(Res.drawable.ic_failed),
-							contentDescription = null,
-						)
-
-						Spacer(modifier = Modifier.height(4.dp))
-
-						Text(
-							modifier = Modifier
-								.fillMaxWidth(),
-							text = stringResource(Res.string.tv_error_general),
-							style = TextStyle(
-								fontFamily = FontFamily(Font(Res.font.nunito_medium)),
-								fontSize = 10.sp,
-								color = primaryFont,
-								textAlign = TextAlign.Center
-							)
-						)
-					}
+					Image(
+						painter = painterResource(Res.drawable.ic_failed),
+						contentDescription = null,
+					)
 				}
 			},
 			loading = {

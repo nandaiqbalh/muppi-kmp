@@ -13,6 +13,7 @@ import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -29,11 +30,18 @@ import org.jetbrains.compose.resources.painterResource
 @Composable
 fun DetailMovieScreenRoot(
 	viewModel: DetailMovieViewModel,
+	movieId: Int,
 	onClickBack: () -> Unit,
 	onClickCast: (Int) -> Unit,
 ) {
 
 	val state by viewModel.state.collectAsStateWithLifecycle()
+
+	LaunchedEffect(movieId){
+		viewModel.getDetailMovie(movieId)
+		viewModel.getMovieCasts(movieId)
+		viewModel.getSimilarMovies(movieId)
+	}
 
 	DetailMovieScreen(
 		state = state,
