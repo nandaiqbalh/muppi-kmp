@@ -8,9 +8,9 @@ import kotlinx.coroutines.flow.Flow
 
 interface DetailMovieRepository {
 
-	suspend fun getDetailMovie(movieId: Int, language: String = "en-US"): Flow<NetworkResult<DetailMovie>>
+	suspend fun getDetailMovie(movieId: Int, language: String = "en-US", isMovie: Boolean): Flow<NetworkResult<DetailMovie>>
 
-	suspend fun getSimilarMovies(movieId: Int, language: String = "en-US"): Flow<NetworkResult<List<Movie>>>
+	suspend fun getSimilarMovies(movieId: Int, language: String = "en-US", isMovie: Boolean): Flow<NetworkResult<List<Movie>>>
 
-	suspend fun getMovieCasts(movieId: Int, language: String = "en-US"): Flow<NetworkResult<List<Cast>>>
+	suspend fun getMovieCasts(movieId: Int, language: String = "en-US", isMovie: Boolean): Flow<NetworkResult<List<Cast>>>
 }

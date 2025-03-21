@@ -25,7 +25,8 @@ data class Result(
     @SerialName("title") val title: String? = null,
     @SerialName("video") val video: Boolean? = null,
     @SerialName("vote_average") val voteAverage: Double? = null,
-    @SerialName("vote_count") val voteCount: Int? = null
+    @SerialName("vote_count") val voteCount: Int? = null,
+    val original_name: String? = null
 )
 
 @Serializable

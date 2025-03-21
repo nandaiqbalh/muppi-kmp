@@ -37,7 +37,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun HomeScreenRoot(
 	viewModel: HomeScreenViewModel,
-	onClickItem: (Int) -> Unit,
+	onClickItem: (Int, Boolean) -> Unit,
 	onClickSeeAll: (SeeAllSource) -> Unit,
 ) {
 
@@ -55,7 +55,7 @@ fun HomeScreenRoot(
 		onAction = { action ->
 			when (action) {
 				is HomeScreenAction.OnClickItem -> {
-					onClickItem(action.id)
+					onClickItem(action.id, action.isMovie)
 				}
 
 				is HomeScreenAction.OnClickSeeAll -> {
@@ -93,7 +93,7 @@ fun HomeScreen(
 					modifier = Modifier.fillMaxWidth(),
 					moviesState = state.nowPlaying,
 					onItemClick = { id ->
-						onAction(HomeScreenAction.OnClickItem(id))
+						onAction(HomeScreenAction.OnClickItem(id, isMovie = true))
 					}
 				)
 
@@ -112,7 +112,7 @@ fun HomeScreen(
 				TopRatedSection(
 					moviesState = state.topRated,
 					onItemClick = { id ->
-						onAction(HomeScreenAction.OnClickItem(id))
+						onAction(HomeScreenAction.OnClickItem(id, isMovie = true))
 					}
 				)
 
@@ -131,7 +131,7 @@ fun HomeScreen(
 				UpComingMoviesSection(
 					moviesState = state.upcomingMovies,
 					onItemClick = { id ->
-						onAction(HomeScreenAction.OnClickItem(id))
+						onAction(HomeScreenAction.OnClickItem(id, isMovie = true))
 					}
 				)
 
@@ -150,7 +150,7 @@ fun HomeScreen(
 				SeriesOnAirSection(
 					moviesState = state.onAirTv,
 					onItemClick = { id ->
-						onAction(HomeScreenAction.OnClickItem(id))
+						onAction(HomeScreenAction.OnClickItem(id, isMovie = false))
 					}
 				)
 

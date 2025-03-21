@@ -17,7 +17,10 @@ sealed interface Route {
 	data object HomeScreen: Route
 
 	@Serializable
-	data class DetailMovieScreen(val movieId: Int): Route
+	data class DetailMovieScreen(
+		val movieId: Int,
+		val isMovie: Boolean
+	): Route
 
 	@Serializable
 	data object ExploreGraph: Route

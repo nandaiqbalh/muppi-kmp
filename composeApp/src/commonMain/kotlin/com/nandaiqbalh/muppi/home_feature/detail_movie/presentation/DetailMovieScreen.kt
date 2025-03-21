@@ -31,16 +31,17 @@ import org.jetbrains.compose.resources.painterResource
 fun DetailMovieScreenRoot(
 	viewModel: DetailMovieViewModel,
 	movieId: Int,
+	isMovie: Boolean,
 	onClickBack: () -> Unit,
 	onClickCast: (Int) -> Unit,
 ) {
 
 	val state by viewModel.state.collectAsStateWithLifecycle()
 
-	LaunchedEffect(movieId){
-		viewModel.getDetailMovie(movieId)
-		viewModel.getMovieCasts(movieId)
-		viewModel.getSimilarMovies(movieId)
+	LaunchedEffect(movieId, isMovie){
+		viewModel.getDetailMovie(movieId, isMovie)
+		viewModel.getMovieCasts(movieId, isMovie)
+		viewModel.getSimilarMovies(movieId, isMovie)
 	}
 
 	DetailMovieScreen(

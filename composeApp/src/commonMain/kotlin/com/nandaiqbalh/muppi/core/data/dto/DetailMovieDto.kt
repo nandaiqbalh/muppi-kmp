@@ -33,6 +33,8 @@ data class DetailMovieDto(
     @SerialName("release_date")
     val releaseDate: String? = null,
 
+    val first_air_date: String? = null,
+
     @SerialName("status")
     val status: String? = null,
 

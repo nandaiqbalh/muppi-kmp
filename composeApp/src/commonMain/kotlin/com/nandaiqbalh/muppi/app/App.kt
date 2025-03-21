@@ -15,6 +15,8 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.navigation
 import androidx.navigation.compose.rememberNavController
+import com.nandaiqbalh.muppi.core.utils.orFalse
+import com.nandaiqbalh.muppi.core.utils.orTrue
 import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.explore_feature.presentation.ExploreScreenRoot
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailMovieScreenRoot
@@ -75,9 +77,9 @@ fun App() {
 						val viewModel = koinViewModel<HomeScreenViewModel>()
 						HomeScreenRoot(
 							viewModel = viewModel,
-							onClickItem = { id ->
+							onClickItem = { id, isMovie ->
 								// Pass the movieId to the DetailMovieScreen via the navigation route
-								navController.navigate(Route.DetailMovieScreen(id))
+								navController.navigate(Route.DetailMovieScreen(id, isMovie))
 							},
 							onClickSeeAll = { source -> }
 						)
@@ -88,10 +90,12 @@ fun App() {
 
 						// Get the movieId from the nav arguments
 						val movieId = it.arguments?.getInt("movieId")?.orZero()
+						val isMovie = it.arguments?.getBoolean("isMovie")?.orTrue()
 
 						DetailMovieScreenRoot(
 							viewModel = viewModel,
 							movieId = movieId.orZero(),
+							isMovie = isMovie.orFalse(),
 							onClickBack = {
 								navController.popBackStack()
 							},

@@ -32,8 +32,13 @@ class DetailMovieRepositoryImpl(
 	override suspend fun getDetailMovie(
 		movieId: Int,
 		language: String,
+		isMovie: Boolean
 	): Flow<NetworkResult<DetailMovie>> = toResultFlow {
-		val apiRoute = ApiRoutes.DETAIL_MOVIE.replace("{movie_id}", movieId.toString())
+		val apiRoute = if (isMovie) {
+			ApiRoutes.DETAIL_MOVIE.replace("{movie_id}", movieId.toString())
+		} else {
+			ApiRoutes.DETAIL_TV.replace("{tv_id}", movieId.toString())
+		}
 
 		val response = httpClient.get(apiRoute) {
 			contentType(ContentType.Application.Json)
@@ -58,8 +63,13 @@ class DetailMovieRepositoryImpl(
 	override suspend fun getSimilarMovies(
 		movieId: Int,
 		language: String,
+		isMovie: Boolean
 	): Flow<NetworkResult<List<Movie>>> = toResultFlow {
-		val apiRoute = ApiRoutes.SIMILAR_MOVIES.replace("{movie_id}", movieId.toString())
+		val apiRoute = if (isMovie){
+			ApiRoutes.SIMILAR_MOVIES.replace("{movie_id}", movieId.toString())
+		} else {
+			ApiRoutes.SIMILAR_TV.replace("{tv_id}", movieId.toString())
+		}
 
 		val response = httpClient.get(apiRoute) {
 			contentType(ContentType.Application.Json)
@@ -85,8 +95,13 @@ class DetailMovieRepositoryImpl(
 	override suspend fun getMovieCasts(
 		movieId: Int,
 		language: String,
+		isMovie: Boolean
 	): Flow<NetworkResult<List<Cast>>> = toResultFlow {
-		val apiRoute = ApiRoutes.CREDITS_BY_MOVIE_ID.replace("{movie_id}", movieId.toString())
+		val apiRoute = if (isMovie) {
+			ApiRoutes.CREDITS_BY_MOVIE_ID.replace("{movie_id}", movieId.toString())
+		} else {
+			ApiRoutes.CREDITS_BY_TV_ID.replace("{tv_id}", movieId.toString())
+		}
 
 		val response = httpClient.get(apiRoute) {
 			contentType(ContentType.Application.Json)

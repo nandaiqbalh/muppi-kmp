@@ -33,12 +33,12 @@ class DetailMovieViewModel(
 		}
 	}
 
-	fun getDetailMovie(movieId: Int) {
+	fun getDetailMovie(movieId: Int, isMovie: Boolean) {
 		viewModelScope.launch {
 			updateState { it.copy(detailMovie = UiState.Loading) }
 
 			// Execute the use case
-			val uiState = getDetailMovieUseCase.execute(movieId)
+			val uiState = getDetailMovieUseCase.execute(movieId, isMovie = isMovie)
 
 			// Update the UI state
 			updateState { it.copy(detailMovie = uiState) }
@@ -46,12 +46,12 @@ class DetailMovieViewModel(
 		}
 	}
 
-	fun getSimilarMovies(movieId: Int) {
+	fun getSimilarMovies(movieId: Int, isMovie: Boolean) {
 		viewModelScope.launch {
 			updateState { it.copy(similarMovies = UiState.Loading) }
 
 			// Execute the use case
-			val uiState = getSimilarMoviesUseCase.execute(movieId)
+			val uiState = getSimilarMoviesUseCase.execute(movieId, isMovie = isMovie)
 
 			// Update the UI state
 			updateState { it.copy(similarMovies = uiState) }
@@ -59,12 +59,12 @@ class DetailMovieViewModel(
 		}
 	}
 
-	fun getMovieCasts(movieId: Int) {
+	fun getMovieCasts(movieId: Int, isMovie: Boolean) {
 		viewModelScope.launch {
 			updateState { it.copy(casts = UiState.Loading) }
 
 			// Execute the use case
-			val uiState = getMovieCastsUseCase.execute(movieId)
+			val uiState = getMovieCastsUseCase.execute(movieId, isMovie = isMovie)
 
 			// Update the UI state
 			updateState { it.copy(casts = uiState) }

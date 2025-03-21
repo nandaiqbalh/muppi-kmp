@@ -6,17 +6,17 @@ import com.nandaiqbalh.muppi.core.domain.model.Cast
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.repository.DetailMovieRepository
 
 interface GetMovieCastsUseCase {
-	suspend fun execute(movieId: Int, language: String = "en-US"): UiState<List<Cast>>
+	suspend fun execute(movieId: Int, language: String = "en-US", isMovie: Boolean): UiState<List<Cast>>
 }
 
 class GetMovieCastsUseCaseImpl(
 	private val repository: DetailMovieRepository,
 ) : GetMovieCastsUseCase {
 
-	override suspend fun execute(movieId: Int, language: String):  UiState<List<Cast>> {
+	override suspend fun execute(movieId: Int, language: String, isMovie: Boolean):  UiState<List<Cast>> {
 		var resultState:  UiState<List<Cast>> = UiState.Loading
 
-		repository.getMovieCasts(movieId, language).collect { result ->
+		repository.getMovieCasts(movieId, language, isMovie).collect { result ->
 			resultState = when (result) {
 				is NetworkResult.Loading -> UiState.Loading
 				is NetworkResult.Success -> {

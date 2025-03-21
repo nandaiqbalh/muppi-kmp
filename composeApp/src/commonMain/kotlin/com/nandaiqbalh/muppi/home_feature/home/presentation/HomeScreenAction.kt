@@ -4,7 +4,7 @@ import com.nandaiqbalh.muppi.core.domain.model.SeeAllSource
 
 sealed interface HomeScreenAction {
 
-	data class  OnClickItem(val id: Int) : HomeScreenAction
+	data class  OnClickItem(val id: Int, val isMovie: Boolean) : HomeScreenAction
 
 	data class OnClickSeeAll(val source: SeeAllSource): HomeScreenAction
 
