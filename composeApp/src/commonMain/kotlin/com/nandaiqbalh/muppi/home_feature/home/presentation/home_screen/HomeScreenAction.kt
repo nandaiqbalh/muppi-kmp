@@ -1,11 +1,17 @@
 package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen
 
-import com.nandaiqbalh.muppi.core.domain.model.SeeAllSource
-
 sealed interface HomeScreenAction {
 
 	data class  OnClickItem(val id: Int, val isMovie: Boolean) : HomeScreenAction
 
-	data class OnClickSeeAll(val source: SeeAllSource): HomeScreenAction
+	data class OnClickSeeAll(val source: Int): HomeScreenAction
+
+	data object OnGetNowPlaying: HomeScreenAction
+
+	data object OnGetTopRated: HomeScreenAction
+
+	data object OnGetUpcomingMovies: HomeScreenAction
+
+	data object OnGetSeriesOnAir: HomeScreenAction
 
 }

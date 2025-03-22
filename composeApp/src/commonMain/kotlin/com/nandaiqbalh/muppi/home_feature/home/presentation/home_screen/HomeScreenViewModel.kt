@@ -24,8 +24,20 @@ class HomeScreenViewModel(
 	fun onAction(action: HomeScreenAction) {
 
 		when (action) {
-			is HomeScreenAction.OnClickItem -> {
+			is HomeScreenAction.OnGetTopRated -> {
+				getTopRatedMovies()
+			}
 
+			is HomeScreenAction.OnGetUpcomingMovies -> {
+				getUpcomingMovies()
+			}
+
+			is HomeScreenAction.OnGetNowPlaying -> {
+				getNowPlayingMovies()
+			}
+
+			is HomeScreenAction.OnGetSeriesOnAir -> {
+				getOnAirTV()
 			}
 
 			else -> {}

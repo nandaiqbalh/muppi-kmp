@@ -25,6 +25,8 @@ import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_scree
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailViewModel
 import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.HomeScreenRoot
 import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.HomeScreenViewModel
+import com.nandaiqbalh.muppi.home_feature.home.presentation.list_screen.ListMovieScreenRoot
+import com.nandaiqbalh.muppi.home_feature.home.presentation.list_screen.ListMovieViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenRoot
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenViewModel
 import com.nandaiqbalh.muppi.saved_feature.presentation.SavedScreen
@@ -84,7 +86,30 @@ fun App() {
 								navController.navigate(Route.DetailMovieScreen(id, isMovie))
 							},
 							onClickSeeAll = { source ->
+								navController.navigate(Route.ListMovieScreen(source = source))
+							}
+						)
+					}
 
+					composable<Route.ListMovieScreen> {
+						val viewModel = koinViewModel<ListMovieViewModel>()
+
+						// Retrieve the passed argument from the navigation route
+						val source = it.arguments?.getInt("source")?.orZero()
+
+						ListMovieScreenRoot(
+							viewModel = viewModel,
+							source = source.orZero(),
+							onClickBack = {
+								navController.popBackStack()
+							},
+							onClickSearch = {
+								navController.navigate(Route.ExploreGraph) {
+									popUpTo(Route.HomeGraph) {
+										inclusive = false  // This ensures we don't pop HomeGraph itself, just the previous entries
+									}
+									launchSingleTop = true // Avoid multiple instances of the same screen									launchSingleTop = true // Optional: Avoid multiple instances of the same screen
+								}
 							}
 						)
 					}

@@ -17,7 +17,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.nandaiqbalh.muppi.core.domain.model.SeeAllSource
 import com.nandaiqbalh.muppi.core.presentation.components.HeaderText
 import com.nandaiqbalh.muppi.core.presentation.components.IconChip
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
@@ -38,17 +37,10 @@ import org.jetbrains.compose.resources.stringResource
 fun HomeScreenRoot(
 	viewModel: HomeScreenViewModel,
 	onClickItem: (Int, Boolean) -> Unit,
-	onClickSeeAll: (SeeAllSource) -> Unit,
+	onClickSeeAll: (Int) -> Unit,
 ) {
 
 	val state by viewModel.state.collectAsStateWithLifecycle()
-
-	LaunchedEffect(Unit){
-		viewModel.getNowPlayingMovies()
-		viewModel.getUpcomingMovies()
-		viewModel.getTopRatedMovies()
-		viewModel.getOnAirTV()
-	}
 
 	HomeScreen(
 		state = state,
@@ -62,6 +54,7 @@ fun HomeScreenRoot(
 					onClickSeeAll(action.source)
 				}
 
+				else -> Unit
 			}
 
 			viewModel.onAction(action)
@@ -74,6 +67,13 @@ fun HomeScreen(
 	state: HomeScreenState,
 	onAction: (HomeScreenAction) -> Unit,
 ) {
+
+	LaunchedEffect(Unit){
+		onAction(HomeScreenAction.OnGetTopRated)
+		onAction(HomeScreenAction.OnGetNowPlaying)
+		onAction(HomeScreenAction.OnGetUpcomingMovies)
+		onAction(HomeScreenAction.OnGetSeriesOnAir)
+	}
 
 	Box(
 		modifier = Modifier
@@ -103,7 +103,7 @@ fun HomeScreen(
 					title = stringResource(Res.string.tv_top_rated),
 					actionText = stringResource(Res.string.tv_see_all),
 					onActionClick = {
-						onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.TopRated))
+						onAction(HomeScreenAction.OnClickSeeAll(source = 1))
 					}
 				)
 
@@ -122,7 +122,7 @@ fun HomeScreen(
 					title = stringResource(Res.string.tv_upcoming_movies),
 					actionText = stringResource(Res.string.tv_see_all),
 					onActionClick = {
-						onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.UpcomingMovies))
+						onAction(HomeScreenAction.OnClickSeeAll(source = 2))
 					}
 				)
 
@@ -141,7 +141,7 @@ fun HomeScreen(
 					title = stringResource(Res.string.tv_series_on_air),
 					actionText = stringResource(Res.string.tv_see_all),
 					onActionClick = {
-						onAction(HomeScreenAction.OnClickSeeAll(SeeAllSource.SeriesOnAir))
+						onAction(HomeScreenAction.OnClickSeeAll(source = 3))
 					}
 				)
 

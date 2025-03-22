@@ -24,6 +24,8 @@ data class DetailMovieDto(
     @SerialName("original_title")
     val originalTitle: String? = null,
 
+    val original_name: String? = null,
+
     @SerialName("overview")
     val overview: String? = null,
 
