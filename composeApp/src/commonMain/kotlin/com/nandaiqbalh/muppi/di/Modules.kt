@@ -29,7 +29,7 @@ import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetTopRatedMoviesU
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetTopRatedMoviesUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetUpcomingMoviesUseCase
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetUpcomingMoviesUseCaseImpl
-import com.nandaiqbalh.muppi.home_feature.home.presentation.HomeScreenViewModel
+import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.HomeScreenViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf

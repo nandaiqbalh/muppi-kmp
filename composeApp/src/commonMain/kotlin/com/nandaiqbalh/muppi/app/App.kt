@@ -19,13 +19,12 @@ import com.nandaiqbalh.muppi.core.utils.orFalse
 import com.nandaiqbalh.muppi.core.utils.orTrue
 import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.explore_feature.presentation.ExploreScreenRoot
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailScreen
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailScreenRoot
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailViewModel
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailScreenRoot
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailViewModel
-import com.nandaiqbalh.muppi.home_feature.home.presentation.HomeScreenRoot
-import com.nandaiqbalh.muppi.home_feature.home.presentation.HomeScreenViewModel
+import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.HomeScreenRoot
+import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.HomeScreenViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenRoot
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenViewModel
 import com.nandaiqbalh.muppi.saved_feature.presentation.SavedScreen

@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation.component
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -12,7 +12,6 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -29,8 +28,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
-import com.nandaiqbalh.muppi.core.presentation.components.VerticalGradientBackground
-import com.nandaiqbalh.muppi.core.presentation.inactiveColor
+import com.nandaiqbalh.muppi.core.presentation.components.shimmerBackground
+import com.nandaiqbalh.muppi.core.presentation.onBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
@@ -41,28 +40,26 @@ import com.skydoves.landscapist.coil3.CoilImage
 import com.skydoves.landscapist.components.rememberImageComponent
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_failed
-import muppi.composeapp.generated.resources.ic_star
 import muppi.composeapp.generated.resources.nunito_medium
-import muppi.composeapp.generated.resources.nunito_semibold
 import muppi.composeapp.generated.resources.tv_error_general
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
 
 @Composable
-fun NowPlayingItem(
+fun TopRatedItem(
 	movie: Movie,
-	onItemClick: (Int) -> Unit,
+	onItemClick: (Int) -> Unit
 ) {
 
-	Box(
+	Column(
 		modifier = Modifier
-			.fillMaxWidth()
+			.width(140.dp)
+			.height(280.dp)
 			.clickable {
 				onItemClick(movie.id)
 			}
-	) {
-
+	){
 		CoilImage(
 			imageModel = {
 				ApiRoutes.BASE_URL_IMAGE.plus(movie.posterPath)
@@ -76,7 +73,8 @@ fun NowPlayingItem(
 			failure = {
 				Box(
 					modifier = Modifier
-						.fillMaxSize(),
+						.fillMaxSize()
+						.background(onBackground),
 					contentAlignment = Alignment.Center
 				){
 
@@ -93,77 +91,62 @@ fun NowPlayingItem(
 			},
 			loading = {
 				PulseAnimation(
-					modifier = Modifier.height(350.dp).fillMaxWidth()
+					modifier = Modifier.height(220.dp).width(140.dp)
 				)
 			},
-			modifier = Modifier.height(350.dp).fillMaxWidth()
+			modifier = Modifier.height(220.dp).width(140.dp)
+				.clip(RoundedCornerShape(16.dp))
 				.background(primaryBackground),
 		)
 
-		VerticalGradientBackground(
-			modifier = Modifier.align(Alignment.BottomCenter)
+		Spacer(modifier = Modifier.height(8.dp))
+
+		Text(
+			modifier = Modifier
+				.fillMaxWidth(),
+			text = movie.title,
+			maxLines = 2,
+			overflow = TextOverflow.Ellipsis,
+			style = TextStyle(
+				fontFamily = FontFamily(Font(Res.font.nunito_medium)),
+				fontSize = 16.sp,
+				color = primaryFont,
+				textAlign = TextAlign.Start
+			)
 		)
 
-		Column(
+		Row(
 			modifier = Modifier
-				.fillMaxWidth()
-				.padding(16.dp)
-				.align(Alignment.BottomCenter),
+				.fillMaxWidth(),
+			horizontalArrangement = Arrangement.Start
 		){
 
 			Text(
-				text = movie.title,
-				maxLines = 1,
+				text = "${(movie.voteAverage * 10).toInt() / 10.0}",
+				maxLines = 2,
 				overflow = TextOverflow.Ellipsis,
-				modifier = Modifier
-					.fillMaxWidth(0.8f),
 				style = TextStyle(
-					fontFamily = FontFamily(Font(Res.font.nunito_semibold)),
-					fontSize = 25.sp,
-					color = primaryFont,
+					fontFamily = FontFamily(Font(Res.font.nunito_medium)),
+					fontSize = 13.sp,
+					color = primaryColor,
 					textAlign = TextAlign.Start
 				)
 			)
 
-			Spacer(modifier = Modifier.height(8.dp))
-
-			Row(
+			Text(
 				modifier = Modifier
-					.fillMaxWidth(0.3f)
-
-			){
-
-				Image(
-					painter = painterResource(Res.drawable.ic_star),
-					contentDescription = "Star",
+					.offset(y = 2.dp),
+				text = " /10",
+				maxLines = 2,
+				overflow = TextOverflow.Ellipsis,
+				style = TextStyle(
+					fontFamily = FontFamily(Font(Res.font.nunito_medium)),
+					fontSize = 10.sp,
+					color = primaryFont,
 				)
-
-				Spacer(modifier = Modifier.width(4.dp))
-
-				Text(
-					text = "${(movie.voteAverage * 10).toInt() / 10.0}",
-					modifier = Modifier,
-					style = TextStyle(
-						fontFamily = FontFamily(Font(Res.font.nunito_semibold)),
-						fontSize = 13.sp,
-						color = primaryColor,
-					)
-				)
-
-				Spacer(modifier = Modifier.width(4.dp))
-
-				Text(
-					text = "(${movie.voteCount}) reviews",
-					modifier = Modifier
-						.offset(y = 2.dp),
-					style = TextStyle(
-						fontFamily = FontFamily(Font(Res.font.nunito_semibold)),
-						fontSize = 10.sp,
-						color = inactiveColor,
-					)
-				)
-
-			}
+			)
 		}
+
 	}
+
 }

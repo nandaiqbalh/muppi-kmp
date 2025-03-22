@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -7,7 +7,6 @@ import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetNowPlayingMovie
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetOnAirTVUseCase
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetTopRatedMoviesUseCase
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetUpcomingMoviesUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

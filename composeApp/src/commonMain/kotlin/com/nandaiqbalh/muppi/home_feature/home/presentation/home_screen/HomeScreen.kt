@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
@@ -21,10 +21,10 @@ import com.nandaiqbalh.muppi.core.domain.model.SeeAllSource
 import com.nandaiqbalh.muppi.core.presentation.components.HeaderText
 import com.nandaiqbalh.muppi.core.presentation.components.IconChip
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
-import com.nandaiqbalh.muppi.home_feature.home.presentation.component.NowPlayingSection
-import com.nandaiqbalh.muppi.home_feature.home.presentation.component.SeriesOnAirSection
-import com.nandaiqbalh.muppi.home_feature.home.presentation.component.TopRatedSection
-import com.nandaiqbalh.muppi.home_feature.home.presentation.component.UpComingMoviesSection
+import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component.NowPlayingSection
+import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component.SeriesOnAirSection
+import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component.TopRatedSection
+import com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component.UpComingMoviesSection
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.app_name
 import muppi.composeapp.generated.resources.iv_logo_home

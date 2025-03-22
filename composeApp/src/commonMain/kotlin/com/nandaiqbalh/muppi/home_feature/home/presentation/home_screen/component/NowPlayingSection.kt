@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation.component
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxWidth

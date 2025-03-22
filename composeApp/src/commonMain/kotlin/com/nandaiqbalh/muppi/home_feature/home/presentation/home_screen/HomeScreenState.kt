@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen
 
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.domain.UiState

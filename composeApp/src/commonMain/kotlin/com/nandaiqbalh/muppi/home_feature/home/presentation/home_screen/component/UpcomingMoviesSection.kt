@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation.component
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
@@ -16,9 +16,9 @@ import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 
 @Composable
-fun TopRatedSection(
+fun UpComingMoviesSection(
 	moviesState: UiState<List<Movie>>,
-	onItemClick: (Int) -> Unit,
+	onItemClick: (Int) -> Unit,  // To handle item click
 ) {
 
 	when (moviesState) {
@@ -30,7 +30,7 @@ fun TopRatedSection(
 			) {
 				itemsIndexed(moviesState.data) { index, movie ->
 
-					TopRatedItem(
+					UpcomingMoviesItem(
 						movie = movie,
 						onItemClick = { id ->
 							onItemClick(id)
@@ -42,6 +42,7 @@ fun TopRatedSection(
 						Spacer(modifier = Modifier.width(16.dp))
 					}
 				}
+
 			}
 		}
 
@@ -56,7 +57,7 @@ fun TopRatedSection(
 			PulseAnimation(
 				modifier = Modifier
 					.fillMaxWidth()
-					.height(220.dp)
+					.height(185.dp)
 			)
 		}
 	}

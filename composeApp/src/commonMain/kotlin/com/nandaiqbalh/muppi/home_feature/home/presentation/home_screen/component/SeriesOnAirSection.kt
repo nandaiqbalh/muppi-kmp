@@ -1,5 +1,6 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation.component
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component
 
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -14,11 +15,12 @@ import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
+import com.nandaiqbalh.muppi.core.presentation.components.items.MovieWithTitleItem
 
 @Composable
-fun UpComingMoviesSection(
+fun SeriesOnAirSection(
 	moviesState: UiState<List<Movie>>,
-	onItemClick: (Int) -> Unit,  // To handle item click
+	onItemClick: (Int) -> Unit,
 ) {
 
 	when (moviesState) {
@@ -30,11 +32,12 @@ fun UpComingMoviesSection(
 			) {
 				itemsIndexed(moviesState.data) { index, movie ->
 
-					UpcomingMoviesItem(
+					MovieWithTitleItem(
+						modifier = Modifier
+							.clickable {
+								onItemClick(movie.id)
+							},
 						movie = movie,
-						onItemClick = { id ->
-							onItemClick(id)
-						}
 					)
 
 					// Conditional spacer after each item, except the last one
@@ -42,7 +45,6 @@ fun UpComingMoviesSection(
 						Spacer(modifier = Modifier.width(16.dp))
 					}
 				}
-
 			}
 		}
 
@@ -57,8 +59,9 @@ fun UpComingMoviesSection(
 			PulseAnimation(
 				modifier = Modifier
 					.fillMaxWidth()
-					.height(185.dp)
+					.height(220.dp)
 			)
 		}
+
 	}
 }

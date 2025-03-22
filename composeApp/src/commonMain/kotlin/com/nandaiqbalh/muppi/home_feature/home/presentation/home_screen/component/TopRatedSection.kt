@@ -1,6 +1,5 @@
-package com.nandaiqbalh.muppi.home_feature.home.presentation.component
+package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.component
 
-import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -15,10 +14,9 @@ import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
-import com.nandaiqbalh.muppi.core.presentation.components.items.MovieWithTitleItem
 
 @Composable
-fun SeriesOnAirSection(
+fun TopRatedSection(
 	moviesState: UiState<List<Movie>>,
 	onItemClick: (Int) -> Unit,
 ) {
@@ -32,12 +30,11 @@ fun SeriesOnAirSection(
 			) {
 				itemsIndexed(moviesState.data) { index, movie ->
 
-					MovieWithTitleItem(
-						modifier = Modifier
-							.clickable {
-								onItemClick(movie.id)
-							},
+					TopRatedItem(
 						movie = movie,
+						onItemClick = { id ->
+							onItemClick(id)
+						}
 					)
 
 					// Conditional spacer after each item, except the last one
@@ -62,6 +59,5 @@ fun SeriesOnAirSection(
 					.height(220.dp)
 			)
 		}
-
 	}
 }
