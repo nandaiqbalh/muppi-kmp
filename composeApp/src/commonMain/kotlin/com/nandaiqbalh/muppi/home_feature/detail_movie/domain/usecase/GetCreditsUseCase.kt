@@ -5,18 +5,18 @@ import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.repository.DetailRepository
 
-interface GetCombinedCreditsUseCase {
-	suspend fun execute(personId: Int, language: String = "en-US"): UiState<List<Movie>>
+interface GetCreditsUseCase {
+	suspend fun execute(personId: Int, language: String = "en-US", isMovie: Boolean): UiState<List<Movie>>
 }
 
-class GetCombinedCreditsUseCaseImpl(
+class GetCreditsUseCaseImpl(
 	private val repository: DetailRepository,
-) : GetCombinedCreditsUseCase {
+) : GetCreditsUseCase {
 
-	override suspend fun execute(personId: Int, language: String): UiState<List<Movie>> {
+	override suspend fun execute(personId: Int, language: String, isMovie: Boolean): UiState<List<Movie>> {
 		var resultState: UiState<List<Movie>> = UiState.Loading
 
-		repository.getCombinedCredits(personId, language).collect { result ->
+		repository.getCombinedCredits(personId, language, isMovie).collect { result ->
 			resultState = when (result) {
 				is NetworkResult.Loading -> UiState.Loading
 				is NetworkResult.Success -> {

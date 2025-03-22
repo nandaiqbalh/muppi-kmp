@@ -34,7 +34,6 @@ import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_back
 import muppi.composeapp.generated.resources.nunito_regular
 import muppi.composeapp.generated.resources.tv_movies_by_cast
-import muppi.composeapp.generated.resources.tv_similar_movies
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -43,6 +42,7 @@ import org.jetbrains.compose.resources.stringResource
 fun CastDetailScreenRoot(
 	viewModel: CastDetailViewModel,
 	castId: Int,
+	isMovie: Boolean,
 	onClickBack: () -> Unit,
 	onClickMovie: (Int, Boolean) -> Unit,
 ) {
@@ -51,7 +51,7 @@ fun CastDetailScreenRoot(
 
 	LaunchedEffect(castId){
 		viewModel.getDetailCast(castId)
-		viewModel.getCombinedList(castId)
+		viewModel.getCombinedList(castId, isMovie)
 	}
 
 	CastDetailScreen(
@@ -62,7 +62,7 @@ fun CastDetailScreenRoot(
 					onClickBack()
 				}
 				is CastDetailAction.OnClickMovie -> {
-					onClickMovie(action.id, action.isMovie)
+					onClickMovie(action.id, isMovie)
 				}
 
 			}
@@ -133,7 +133,7 @@ fun CastDetailScreen(
 					CombinedCreditsSection(
 						moviesState = state.moviesState,
 						onClickItem = { id ->
-							onAction(CastDetailAction.OnClickMovie(id, isMovie = true))
+							onAction(CastDetailAction.OnClickMovie(id))
 						}
 					)
 

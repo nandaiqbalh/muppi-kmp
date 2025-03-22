@@ -186,8 +186,14 @@ class DetailRepositoryImpl(
 	override suspend fun getCombinedCredits(
 		personId: Int,
 		language: String,
+		isMovie: Boolean,
 	): Flow<NetworkResult<List<Movie>>>  = toResultFlow {
-		val apiRoute = ApiRoutes.COMBINED_LIST.replace("{person_id}", personId.toString())
+
+		val apiRoute = if (isMovie) {
+			ApiRoutes.MOVIE_CREDITS.replace("{person_id}", personId.toString())
+		} else {
+			ApiRoutes.TV_CREDITS.replace("{person_id}", personId.toString())
+		}
 
 		val response = httpClient.get(apiRoute) {
 			contentType(ContentType.Application.Json)

@@ -34,6 +34,7 @@ fun DetailScreenRoot(
 	isMovie: Boolean,
 	onClickBack: () -> Unit,
 	onClickCast: (Int) -> Unit,
+	onClickSimilarMovie: (Int, Boolean) -> Unit,
 ) {
 
 	val state by viewModel.state.collectAsStateWithLifecycle()
@@ -57,6 +58,9 @@ fun DetailScreenRoot(
 					onClickCast(action.id)
 				}
 
+				is DetailAction.OnClickSimilar -> {
+					onClickSimilarMovie(action.id, isMovie)
+				}
 				else -> {
 					Unit
 				}

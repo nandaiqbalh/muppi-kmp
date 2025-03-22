@@ -84,7 +84,9 @@ fun App() {
 								// Pass the movieId to the DetailMovieScreen via the navigation route
 								navController.navigate(Route.DetailMovieScreen(id, isMovie))
 							},
-							onClickSeeAll = { source -> }
+							onClickSeeAll = { source ->
+
+							}
 						)
 					}
 
@@ -104,6 +106,9 @@ fun App() {
 							},
 							onClickCast = { id ->
 								navController.navigate(Route.CastDetailScreen(id))
+							},
+							onClickSimilarMovie = { similarMovieId, isSimilarMovie ->
+								navController.navigate(Route.DetailMovieScreen(similarMovieId, isMovie = isSimilarMovie))
 							}
 						)
 					}
@@ -113,15 +118,17 @@ fun App() {
 
 						// Get the movieId from the nav arguments
 						val castId = it.arguments?.getInt("castId")?.orZero()
+						val isMovie = it.arguments?.getBoolean("isMovie")?.orTrue()
 
 						CastDetailScreenRoot(
 							viewModel = viewModel,
 							castId = castId.orZero(),
+							isMovie = isMovie.orTrue(),
 							onClickBack = {
 								navController.popBackStack()
 							},
-							onClickMovie = { id, isMovie ->
-
+							onClickMovie = { id, isSimilarMovie ->
+								navController.navigate(Route.DetailMovieScreen(id, isMovie = isSimilarMovie))
 							}
 						)
 					}

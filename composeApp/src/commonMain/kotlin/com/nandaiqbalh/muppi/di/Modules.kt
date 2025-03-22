@@ -11,8 +11,8 @@ import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailU
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastsUseCase
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastsUseCaseImpl
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCombinedCreditsUseCase
-import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCombinedCreditsUseCaseImpl
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCreditsUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCreditsUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarUseCase
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetVideosUseCase
@@ -62,7 +62,7 @@ val sharedModules = module {
 	singleOf(::GetVideosUseCaseImpl).bind<GetVideosUseCase>()
 
 	singleOf(::GetCastDetailUseCaseImpl).bind<GetCastDetailUseCase>()
-	singleOf(::GetCombinedCreditsUseCaseImpl).bind<GetCombinedCreditsUseCase>()
+	singleOf(::GetCreditsUseCaseImpl).bind<GetCreditsUseCase>()
 
 	// view model
 	viewModelOf(::SplashScreenViewModel)

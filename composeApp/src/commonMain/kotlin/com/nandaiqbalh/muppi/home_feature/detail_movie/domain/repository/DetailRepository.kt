@@ -20,6 +20,6 @@ interface DetailRepository {
 
 	suspend fun getCastDetail(id: Int): Flow<NetworkResult<CastDetail>>
 
-	suspend fun getCombinedCredits(personId: Int, language: String = "en-US"): Flow<NetworkResult<List<Movie>>>
+	suspend fun getCombinedCredits(personId: Int, language: String = "en-US", isMovie: Boolean): Flow<NetworkResult<List<Movie>>>
 
 }

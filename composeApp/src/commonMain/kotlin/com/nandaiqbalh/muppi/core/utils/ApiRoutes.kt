@@ -22,6 +22,7 @@ object ApiRoutes {
 	const val VIDEOS_TV = "$BASE_URL/3/movie/{tv_id}/videos"
 
 	const val CAST_DETAIL = "$BASE_URL/3/person/{person_id}"
-	const val COMBINED_LIST = "$BASE_URL/3/person/{person_id}/combined_credits"
+	const val TV_CREDITS = "$BASE_URL/3/person/{person_id}/tv_credits"
+	const val MOVIE_CREDITS = "$BASE_URL/3/person/{person_id}/movie_credits"
 
 }
