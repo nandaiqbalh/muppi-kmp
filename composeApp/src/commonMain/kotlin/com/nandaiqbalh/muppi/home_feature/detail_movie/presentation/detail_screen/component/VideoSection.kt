@@ -15,6 +15,11 @@ import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -30,6 +35,7 @@ import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 import com.nandaiqbalh.muppi.core.presentation.components.items.MovieWithTitleItem
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
+import kotlinx.coroutines.delay
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.nunito_regular
 import muppi.composeapp.generated.resources.tv_error_empty
@@ -41,6 +47,13 @@ fun VideoSection(
 	videosState: UiState<List<Video>> = UiState.Initial
 ) {
 
+	var isTrailerVisible by remember { mutableStateOf(false) }
+
+	LaunchedEffect(Unit){
+		delay(4000)
+		isTrailerVisible = true
+	}
+
 	when (videosState) {
 		is UiState.Success -> {
 			val videos = videosState.data
@@ -51,34 +64,48 @@ fun VideoSection(
 
 			val key = video.key
 
-			if (key.isNotEmpty()){
-				Box(
-					modifier = Modifier.fillMaxWidth()
-						.padding(horizontal = 16.dp).height(200.dp)
-						.clip(RoundedCornerShape(16.dp)),
-				) {
-					VideoPlayer(
-						modifier = Modifier,
-						url = "https://www.youtube.com/watch?v=$key",
-						autoPlay = false,
-						showControls = true
-					)
+			if (isTrailerVisible){
+
+				if (key.isNotEmpty()){
+					Box(
+						modifier = Modifier.fillMaxWidth()
+							.padding(horizontal = 16.dp).height(200.dp)
+							.clip(RoundedCornerShape(16.dp)),
+					) {
+						VideoPlayer(
+							modifier = Modifier,
+							url = "https://www.youtube.com/watch?v=$key",
+							autoPlay = false,
+							showControls = true
+						)
+					}
+				} else {
+					Box(
+						modifier = Modifier
+							.fillMaxWidth()
+							.background(primaryBackground)
+					){
+						Text(
+							text = stringResource(Res.string.tv_error_empty),
+							modifier = Modifier.padding(16.dp),
+							style = TextStyle(
+								fontFamily = FontFamily(Font(Res.font.nunito_regular)),
+								fontSize = 10.sp,
+								color = primaryFont,
+								textAlign = TextAlign.Start
+							)
+						)
+					}
 				}
 			} else {
 				Box(
 					modifier = Modifier
-						.fillMaxWidth()
-						.background(primaryBackground)
+						.background(primaryBackground),
+					contentAlignment = Alignment.Center
 				){
-					Text(
-						text = stringResource(Res.string.tv_error_empty),
-						modifier = Modifier.padding(16.dp),
-						style = TextStyle(
-							fontFamily = FontFamily(Font(Res.font.nunito_regular)),
-							fontSize = 10.sp,
-							color = primaryFont,
-							textAlign = TextAlign.Start
-						)
+
+					PulseAnimation(
+						modifier = Modifier.height(200.dp).fillMaxWidth()
 					)
 				}
 			}
@@ -91,7 +118,7 @@ fun VideoSection(
 				contentAlignment = Alignment.Center
 			){
 				ErrorComponent(
-					modifier = Modifier.fillMaxWidth().height(250.dp)
+					modifier = Modifier.fillMaxWidth().height(200.dp)
 				)
 			}
 		}
@@ -104,7 +131,7 @@ fun VideoSection(
 			){
 
 				PulseAnimation(
-					modifier = Modifier.height(250.dp).fillMaxWidth()
+					modifier = Modifier.height(200.dp).fillMaxWidth()
 				)
 			}
 		}
