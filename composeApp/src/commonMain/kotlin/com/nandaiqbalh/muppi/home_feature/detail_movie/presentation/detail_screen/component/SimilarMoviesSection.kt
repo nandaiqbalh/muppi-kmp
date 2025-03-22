@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.component
+package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.component
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable

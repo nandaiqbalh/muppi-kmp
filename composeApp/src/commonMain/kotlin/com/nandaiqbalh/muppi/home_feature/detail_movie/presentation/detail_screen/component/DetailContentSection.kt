@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.component
+package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.component
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -40,7 +40,7 @@ import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.ApiRoutes
 import com.nandaiqbalh.muppi.core.utils.toFormattedDate
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailState
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailState
 import com.skydoves.landscapist.ImageOptions
 import com.skydoves.landscapist.animation.circular.CircularRevealPlugin
 import com.skydoves.landscapist.coil3.CoilImage

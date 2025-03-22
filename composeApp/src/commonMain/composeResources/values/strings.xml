@@ -18,10 +18,14 @@
     <string name="tv_cast">Cast</string>
     <string name="tv_similar_movies">More like this</string>
 
-
     <string name="desc_logo_splash">Logo Splash Screen</string>
 
     <string name="tv_error_general">Oops! Something went wrong.</string>
     <string name="tv_error_empty">It looks like the data you're searching for is empty.</string>
+
+    <string name="biography">Biography</string>
+    <string name="tv_place_of_birth">Place of Birth</string>
+    <string name="tv_birthday">Birthday</string>
+    <string name="tv_movies_by_cast">Movies by Cast</string>
 
 </resources>

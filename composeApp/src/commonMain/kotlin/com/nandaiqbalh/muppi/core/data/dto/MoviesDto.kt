@@ -7,7 +7,8 @@ import kotlinx.serialization.Serializable
 data class MoviesDto(
 	@SerialName("dates") val dates: Dates? = null,
 	@SerialName("page") val page: Int? = null,
-	@SerialName("results") val results: List<Result>? = null
+	@SerialName("results") val results: List<Result>? = null,
+    val cast: List<Result>? = null
 )
 
 @Serializable

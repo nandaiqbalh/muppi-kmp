@@ -21,4 +21,7 @@ object ApiRoutes {
 	const val SIMILAR_TV = "$BASE_URL/3/tv/{tv_id}/similar"
 	const val VIDEOS_TV = "$BASE_URL/3/movie/{tv_id}/videos"
 
+	const val CAST_DETAIL = "$BASE_URL/3/person/{person_id}"
+	const val COMBINED_LIST = "$BASE_URL/3/person/{person_id}/combined_credits"
+
 }

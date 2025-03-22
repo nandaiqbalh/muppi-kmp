@@ -31,6 +31,28 @@ fun MoviesDto.toMovies(): List<Movie> {
 	} ?: emptyList() // Return an empty list if results is null
 }
 
+fun MoviesDto.toMoviesByCast(): List<Movie> {
+	return this.cast?.map { movieDto ->
+		// Mapping each Result (movieDto) to a Movie using the provided extension functions
+		Movie(
+			adult = movieDto.adult.orFalse(),
+			backdropPath = movieDto.backdropPath.orEmpty(),
+			genreIds = movieDto.genreIds.orEmpty(),
+			id = movieDto.id.orZero(),
+			originalLanguage = movieDto.originalLanguage.orEmpty(),
+			originalTitle = if (movieDto.originalTitle.isNullOrEmpty()) movieDto.original_name.orEmpty() else movieDto.originalTitle,
+			overview = movieDto.overview.orEmpty(),
+			popularity = movieDto.popularity.orZero(),
+			posterPath = movieDto.posterPath.orEmpty(),
+			releaseDate = movieDto.releaseDate.orEmpty(),
+			title = if (movieDto.title.isNullOrEmpty()) movieDto.original_name.orEmpty() else movieDto.title,
+			video = movieDto.video.orFalse(),
+			voteAverage = movieDto.voteAverage.orZero(),
+			voteCount = movieDto.voteCount.orZero()
+		)
+	} ?: emptyList() // Return an empty list if results is null
+}
+
 fun DetailMovieDto.toDetailMovie(): DetailMovie {
 	return DetailMovie(
 		adult = this.adult.orFalse(),

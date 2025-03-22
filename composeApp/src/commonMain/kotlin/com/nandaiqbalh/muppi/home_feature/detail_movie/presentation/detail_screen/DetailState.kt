@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation
+package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen
 
 import com.nandaiqbalh.muppi.core.domain.model.Cast
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie

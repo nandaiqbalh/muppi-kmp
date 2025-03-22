@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation
+package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

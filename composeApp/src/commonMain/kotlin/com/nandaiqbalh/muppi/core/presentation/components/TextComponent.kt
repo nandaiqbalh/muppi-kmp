@@ -2,6 +2,7 @@ package com.nandaiqbalh.muppi.core.presentation.components
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,10 +15,12 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.nandaiqbalh.muppi.core.presentation.inactiveDarkColor
 import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.nunito_medium
+import muppi.composeapp.generated.resources.nunito_regular
 import org.jetbrains.compose.resources.Font
 
 @Composable
@@ -79,4 +82,36 @@ fun SingleHeaderText(
 			textAlign = TextAlign.Start
 		)
 	)
+}
+
+@Composable
+fun TitleValueText(
+	title: String,
+	value: String,
+) {
+
+	Column(
+		modifier = Modifier
+			.fillMaxWidth()
+	) {
+
+		Text(
+			text = title,
+			style = TextStyle(
+				fontFamily = FontFamily(Font(Res.font.nunito_regular)),
+				fontSize = 10.sp,
+				color = inactiveDarkColor,
+			)
+		)
+
+		Text(
+			modifier = Modifier,
+			text = value,
+			style = TextStyle(
+				fontFamily = FontFamily(Font(Res.font.nunito_regular)),
+				fontSize = 16.sp,
+				color = primaryFont,
+			)
+		)
+	}
 }

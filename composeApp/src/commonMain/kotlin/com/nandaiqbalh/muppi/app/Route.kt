@@ -23,6 +23,11 @@ sealed interface Route {
 	): Route
 
 	@Serializable
+	data class CastDetailScreen(
+		val castId: Int,
+	): Route
+
+	@Serializable
 	data object ExploreGraph: Route
 
 	@Serializable

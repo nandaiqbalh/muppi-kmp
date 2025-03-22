@@ -5,15 +5,20 @@ import com.nandaiqbalh.muppi.core.data.remote.setupKermit
 import com.nandaiqbalh.muppi.core.getPlatform
 import com.nandaiqbalh.muppi.home_feature.detail_movie.data.repository.DetailRepositoryImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.repository.DetailRepository
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastDetailUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastDetailUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailUseCase
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetDetailUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastsUseCase
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastsUseCaseImpl
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCombinedCreditsUseCase
+import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCombinedCreditsUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarUseCase
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetSimilarUseCaseImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetVideosUseCase
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetVideosUseCaseImpl
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailViewModel
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailViewModel
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailViewModel
 import com.nandaiqbalh.muppi.home_feature.home.data.repository.HomeRepositoryImpl
 import com.nandaiqbalh.muppi.home_feature.home.domain.repository.HomeRepository
 import com.nandaiqbalh.muppi.home_feature.home.domain.usecase.GetNowPlayingMoviesUseCase
@@ -56,8 +61,12 @@ val sharedModules = module {
 	singleOf(::GetCastsUseCaseImpl).bind<GetCastsUseCase>()
 	singleOf(::GetVideosUseCaseImpl).bind<GetVideosUseCase>()
 
+	singleOf(::GetCastDetailUseCaseImpl).bind<GetCastDetailUseCase>()
+	singleOf(::GetCombinedCreditsUseCaseImpl).bind<GetCombinedCreditsUseCase>()
+
 	// view model
 	viewModelOf(::SplashScreenViewModel)
 	viewModelOf(::HomeScreenViewModel)
 	viewModelOf(::DetailViewModel)
+	viewModelOf(::CastDetailViewModel)
 }

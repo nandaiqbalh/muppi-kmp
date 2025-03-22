@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation
+package com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
@@ -21,7 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.component.DetailContentSection
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.component.DetailContentSection
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_back
 import muppi.composeapp.generated.resources.ic_save_inactive

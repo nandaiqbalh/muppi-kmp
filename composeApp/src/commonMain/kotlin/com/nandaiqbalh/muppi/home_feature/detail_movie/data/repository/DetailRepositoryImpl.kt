@@ -1,18 +1,22 @@
 package com.nandaiqbalh.muppi.home_feature.detail_movie.data.repository
 
 import com.nandaiqbalh.muppi.MuppiAppSharedConfig
+import com.nandaiqbalh.muppi.core.data.dto.CastDetailDto
 import com.nandaiqbalh.muppi.core.data.dto.CreditsDto
 import com.nandaiqbalh.muppi.core.data.dto.DetailMovieDto
 import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
 import com.nandaiqbalh.muppi.core.data.dto.VideosDto
+import com.nandaiqbalh.muppi.core.data.mapper.toCastDetail
 import com.nandaiqbalh.muppi.core.data.mapper.toCasts
 import com.nandaiqbalh.muppi.core.data.mapper.toDetailMovie
 import com.nandaiqbalh.muppi.core.data.mapper.toMovies
+import com.nandaiqbalh.muppi.core.data.mapper.toMoviesByCast
 import com.nandaiqbalh.muppi.core.data.mapper.toVideos
 import com.nandaiqbalh.muppi.core.data.remote.ApiException
 import com.nandaiqbalh.muppi.core.data.remote.toResultFlow
 import com.nandaiqbalh.muppi.core.domain.NetworkResult
 import com.nandaiqbalh.muppi.core.domain.model.Cast
+import com.nandaiqbalh.muppi.core.domain.model.CastDetail
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.domain.model.Video
@@ -149,6 +153,54 @@ class DetailRepositoryImpl(
 				"Response body is null"
 			)
 			NetworkResult.Success(responseBody.toVideos())
+		} else {
+			throw ApiException(
+				response.status.value,
+				"HTTP ${response.status.value}: ${response.status.description}"
+			)
+		}
+	}
+
+	override suspend fun getCastDetail(id: Int): Flow<NetworkResult<CastDetail>> = toResultFlow {
+		val apiRoute = ApiRoutes.CAST_DETAIL.replace("{person_id}", id.toString())
+
+		val response = httpClient.get(apiRoute) {
+			contentType(ContentType.Application.Json)
+			header("Authorization", "Bearer ${MuppiAppSharedConfig.TMDB_API_KEY}")
+		}
+
+		if (response.status.isSuccess()) {
+			val responseBody: CastDetailDto = response.body() ?: throw ApiException(
+				response.status.value,
+				"Response body is null"
+			)
+			NetworkResult.Success(responseBody.toCastDetail())
+		} else {
+			throw ApiException(
+				response.status.value,
+				"HTTP ${response.status.value}: ${response.status.description}"
+			)
+		}
+	}
+
+	override suspend fun getCombinedCredits(
+		personId: Int,
+		language: String,
+	): Flow<NetworkResult<List<Movie>>>  = toResultFlow {
+		val apiRoute = ApiRoutes.COMBINED_LIST.replace("{person_id}", personId.toString())
+
+		val response = httpClient.get(apiRoute) {
+			contentType(ContentType.Application.Json)
+			header("Authorization", "Bearer ${MuppiAppSharedConfig.TMDB_API_KEY}")
+			parameter("language", language)
+		}
+
+		if (response.status.isSuccess()) {
+			val responseBody: MoviesDto = response.body() ?: throw ApiException(
+				response.status.value,
+				"Response body is null"
+			)
+			NetworkResult.Success(responseBody.toMoviesByCast())
 		} else {
 			throw ApiException(
 				response.status.value,

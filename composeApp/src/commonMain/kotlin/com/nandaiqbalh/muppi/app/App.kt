@@ -19,8 +19,11 @@ import com.nandaiqbalh.muppi.core.utils.orFalse
 import com.nandaiqbalh.muppi.core.utils.orTrue
 import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.explore_feature.presentation.ExploreScreenRoot
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailScreenRoot
-import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.DetailViewModel
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailScreen
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailScreenRoot
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailViewModel
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailScreenRoot
+import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailViewModel
 import com.nandaiqbalh.muppi.home_feature.home.presentation.HomeScreenRoot
 import com.nandaiqbalh.muppi.home_feature.home.presentation.HomeScreenViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenRoot
@@ -99,7 +102,27 @@ fun App() {
 							onClickBack = {
 								navController.popBackStack()
 							},
-							onClickCast = { id -> }
+							onClickCast = { id ->
+								navController.navigate(Route.CastDetailScreen(id))
+							}
+						)
+					}
+
+					composable<Route.CastDetailScreen> {
+						val viewModel = koinViewModel<CastDetailViewModel>()
+
+						// Get the movieId from the nav arguments
+						val castId = it.arguments?.getInt("castId")?.orZero()
+
+						CastDetailScreenRoot(
+							viewModel = viewModel,
+							castId = castId.orZero(),
+							onClickBack = {
+								navController.popBackStack()
+							},
+							onClickMovie = { id, isMovie ->
+
+							}
 						)
 					}
 				}
