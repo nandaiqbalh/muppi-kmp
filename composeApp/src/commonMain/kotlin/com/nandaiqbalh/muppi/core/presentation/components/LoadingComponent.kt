@@ -6,9 +6,14 @@ import androidx.compose.animation.core.animateFloat
 import androidx.compose.animation.core.infiniteRepeatable
 import androidx.compose.animation.core.rememberInfiniteTransition
 import androidx.compose.animation.core.tween
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.runtime.Composable
@@ -27,6 +32,12 @@ import com.nandaiqbalh.muppi.core.presentation.gray100
 import com.nandaiqbalh.muppi.core.presentation.gray300
 import com.nandaiqbalh.muppi.core.presentation.gray50
 import com.nandaiqbalh.muppi.core.presentation.primaryColor
+import io.github.alexzhirkevich.compottie.Compottie
+import io.github.alexzhirkevich.compottie.LottieCompositionSpec
+import io.github.alexzhirkevich.compottie.rememberLottieComposition
+import io.github.alexzhirkevich.compottie.rememberLottiePainter
+import muppi.composeapp.generated.resources.Res
+import org.jetbrains.compose.resources.ExperimentalResourceApi
 
 fun Modifier.shimmerBackground(shape: Shape = RectangleShape): Modifier = composed {
 	val transition = rememberInfiniteTransition()
@@ -83,4 +94,35 @@ fun PulseAnimation(modifier: Modifier = Modifier) {
 		)
 	}
 
+}
+
+@OptIn(ExperimentalResourceApi::class)
+@Composable
+fun LoadingNextPageComponent(modifier: Modifier = Modifier) {
+
+	val composition by rememberLottieComposition {
+		LottieCompositionSpec.JsonString(
+			Res.readBytes("files/loading.json").decodeToString()
+		)
+	}
+
+	Column(
+		modifier = modifier
+			.fillMaxWidth()
+	){
+		Spacer(
+			modifier = Modifier
+				.height(8.dp)
+		)
+
+		Image(
+			modifier = Modifier.align(Alignment.CenterHorizontally),
+			painter = rememberLottiePainter(
+				composition = composition,
+				iterations = Compottie.IterateForever
+			),
+			contentDescription = "Lottie animation"
+		)
+
+	}
 }

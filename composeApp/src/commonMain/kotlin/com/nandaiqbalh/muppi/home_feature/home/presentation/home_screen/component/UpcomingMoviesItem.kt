@@ -3,7 +3,6 @@ package com.nandaiqbalh.muppi.home_feature.home.presentation.home_screen.compone
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -41,13 +40,10 @@ import com.skydoves.landscapist.coil3.CoilImage
 import com.skydoves.landscapist.components.rememberImageComponent
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_failed
-import muppi.composeapp.generated.resources.nunito_medium
 import muppi.composeapp.generated.resources.nunito_regular
 import muppi.composeapp.generated.resources.nunito_semibold
-import muppi.composeapp.generated.resources.tv_error_general
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun UpcomingMoviesItem(

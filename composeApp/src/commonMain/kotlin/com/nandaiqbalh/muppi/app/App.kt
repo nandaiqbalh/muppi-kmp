@@ -110,6 +110,9 @@ fun App() {
 									}
 									launchSingleTop = true // Avoid multiple instances of the same screen									launchSingleTop = true // Optional: Avoid multiple instances of the same screen
 								}
+							},
+							onClickMovieItem = { id, isMovie ->
+								navController.navigate(Route.DetailMovieScreen(id, isMovie))
 							}
 						)
 					}

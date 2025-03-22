@@ -4,6 +4,9 @@ import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 
 data class ListMovieState(
-	val movieState: UiState<List<Movie>> = UiState.Initial,
-	val titleScreen: String = "Top Rated"
+	val moviesState: UiState<List<Movie>> = UiState.Initial,
+	val nextPageState: UiState<Boolean> = UiState.Initial,
+	val movies: List<Movie> = emptyList(),
+	val source: Int = 0,
+	val page: Int = 1
 )

@@ -44,7 +44,7 @@ class HomeScreenViewModel(
 		}
 	}
 
-	fun getNowPlayingMovies(page: Int = 1) {
+	private fun getNowPlayingMovies(page: Int = 1) {
 		viewModelScope.launch {
 			updateState { it.copy(nowPlaying = UiState.Loading) }
 
@@ -57,7 +57,7 @@ class HomeScreenViewModel(
 		}
 	}
 
-	fun getTopRatedMovies(page: Int = 1) {
+	private fun getTopRatedMovies(page: Int = 1) {
 		viewModelScope.launch {
 			updateState { it.copy(topRated = UiState.Loading) }
 
@@ -70,7 +70,7 @@ class HomeScreenViewModel(
 		}
 	}
 
-	fun getUpcomingMovies(page: Int = 1) {
+	private fun getUpcomingMovies(page: Int = 1) {
 		viewModelScope.launch {
 			updateState { it.copy(upcomingMovies = UiState.Loading) }
 
@@ -83,7 +83,7 @@ class HomeScreenViewModel(
 		}
 	}
 
-	fun getOnAirTV(page: Int = 1) {
+	private fun getOnAirTV(page: Int = 1) {
 		viewModelScope.launch {
 			updateState { it.copy(onAirTv = UiState.Loading) }
 

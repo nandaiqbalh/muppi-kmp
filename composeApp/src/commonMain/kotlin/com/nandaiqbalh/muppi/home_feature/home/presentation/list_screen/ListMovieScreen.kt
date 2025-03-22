@@ -10,7 +10,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
-import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -27,43 +27,36 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
+import com.nandaiqbalh.muppi.core.utils.logging
+import com.nandaiqbalh.muppi.home_feature.home.presentation.list_screen.component.ListMovieContentSection
+import kotlinx.coroutines.delay
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_back
 import muppi.composeapp.generated.resources.ic_search
 import muppi.composeapp.generated.resources.nunito_medium
+import muppi.composeapp.generated.resources.tv_series_on_air
+import muppi.composeapp.generated.resources.tv_top_rated
+import muppi.composeapp.generated.resources.tv_upcoming_movies
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ListMovieScreenRoot(
 	viewModel: ListMovieViewModel,
 	source: Int,
 	onClickBack: () -> Unit,
-	onClickSearch: () -> Unit
+	onClickSearch: () -> Unit,
+	onClickMovieItem: (Int, Boolean) -> Unit
 ) {
 
 	val state by viewModel.state.collectAsStateWithLifecycle()
 
 	LaunchedEffect(source){
-		when(source){
-			1 -> {
-				// fetch top rated
-				viewModel.updateState { it.copy(titleScreen = "Top Rated") }
-			}
-			2 -> {
-				// fetch upcoming movies
-				viewModel.updateState { it.copy(titleScreen = "Upcoming Movies") }
-			}
-			3 -> {
-				// fetch series on air
-				viewModel.updateState { it.copy(titleScreen = "Series On Air") }
-			}
-			else -> {
-				// do nothing
-			}
-		}
+		viewModel.updateState { it.copy(source = source, moviesState = UiState.Loading) }
 	}
 
 	ListMovieScreen(
@@ -75,6 +68,9 @@ fun ListMovieScreenRoot(
 				}
 				is ListMovieAction.OnClickSearch -> {
 					onClickSearch()
+				}
+				is ListMovieAction.OnClickItem -> {
+					onClickMovieItem(action.id, state.source != 3)
 				}
 				else -> {
 					Unit
@@ -92,6 +88,12 @@ fun ListMovieScreen(
 	onAction: (ListMovieAction) -> Unit,
 ) {
 
+	logging { "source of page ${state.source}" }
+
+	LaunchedEffect(state.source){
+		onAction(ListMovieAction.GetMovieList(page = state.page, source = state.source, isFirstLoad = true))
+	}
+
 	Box(
 		modifier = Modifier
 			.fillMaxSize()
@@ -99,6 +101,7 @@ fun ListMovieScreen(
 	) {
 
 		Scaffold(
+			containerColor = primaryBackground,
 			contentColor = primaryBackground,
 			topBar = {
 				Row(
@@ -118,10 +121,17 @@ fun ListMovieScreen(
 						contentDescription = null,
 					)
 
+					val titleScreen: String = when(state.source){
+						1 -> stringResource(Res.string.tv_top_rated)
+						2 -> stringResource(Res.string.tv_upcoming_movies)
+						3 -> stringResource(Res.string.tv_series_on_air)
+						else -> {""}
+					}
+
 					Text(
 						modifier = Modifier
 							.weight(1f),
-						text = state.titleScreen,
+						text = titleScreen,
 						maxLines = 1,
 						overflow = TextOverflow.Ellipsis,
 						style = TextStyle(
@@ -145,11 +155,32 @@ fun ListMovieScreen(
 			}
 		) {
 
-			LazyColumn(
-				modifier = Modifier.fillMaxSize().background(primaryBackground)
-			){
+			val lazyListState = rememberLazyListState()
 
+			val isAtBottom = lazyListState.layoutInfo.visibleItemsInfo.lastOrNull()?.index == lazyListState.layoutInfo.totalItemsCount - 1
+			val isReadyToScroll =
+				state.moviesState is UiState.Success &&
+						state.movies.size > 10 &&
+						state.moviesState !is UiState.Loading &&
+						state.moviesState !is UiState.Initial &&
+						state.nextPageState !is UiState.Loading &&
+						state.nextPageState !is UiState.Initial
+
+			val isNeedScroll = isAtBottom && isReadyToScroll
+
+			LaunchedEffect(isNeedScroll){
+				onAction(ListMovieAction.GetMovieList(page = state.page, source = state.source, isFirstLoad = false))
 			}
+
+			ListMovieContentSection(
+				modifier = Modifier
+					.padding(it),
+				lazyListState = lazyListState,
+				state = state,
+				onClickItem = { id ->
+					onAction(ListMovieAction.OnClickItem(id))
+				}
+			)
 		}
 	}
 }
