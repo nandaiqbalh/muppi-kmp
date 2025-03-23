@@ -5,7 +5,7 @@
     <string name="app_name">Muppi</string>
 
     <string name="nav_item_home">Home</string>
-    <string name="nav_item_explore">Exple</string>
+    <string name="nav_item_explore">Explore</string>
     <string name="nav_item_saved">Saved</string>
 
     <string name="tv_top_rated">Top Rated</string>
@@ -27,5 +27,11 @@
     <string name="tv_place_of_birth">Place of Birth</string>
     <string name="tv_birthday">Birthday</string>
     <string name="tv_movies_by_cast">Movies by Cast</string>
+
+    <string name="tv_genre">Genre</string>
+    <string name="tv_all">All</string>
+    <string name="tv_type">Type</string>
+    <string name="tv_movie">Movie</string>
+    <string name="tv_tv_or_series">TV or Series</string>
 
 </resources>

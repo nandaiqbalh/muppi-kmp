@@ -25,6 +25,7 @@ buildkonfig = "0.15.0"
 chucker = "3.5.2"
 kermit = "1.1.3"
 mediaPlayerKMP = "2.0.9"
+foundationAndroid = "1.7.8"
 
 [libraries]
 androidx-activity-compose = { module = "androidx.activity:activity-compose", version.ref = "androidx-activityCompose" }
@@ -77,6 +78,7 @@ chucker = { module = "com.github.chuckerteam.chucker:library", version.ref = "ch
 kermit = { module = "co.touchlab:kermit", version.ref = "kermit" }
 
 mediaplayer-kmp = { module = "io.github.khubaibkhan4:mediaplayer-kmp", version.ref = "mediaPlayerKMP" }
+androidx-foundation-android = { group = "androidx.compose.foundation", name = "foundation-android", version.ref = "foundationAndroid" }
 
 [plugins]
 androidApplication = { id = "com.android.application", version.ref = "agp" }

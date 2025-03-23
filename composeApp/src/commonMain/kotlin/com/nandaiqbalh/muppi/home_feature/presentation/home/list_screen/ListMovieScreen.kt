@@ -164,8 +164,6 @@ fun ListMovieScreen(
 			val isReadyToScroll =
 				state.moviesState is UiState.Success &&
 						state.movies.size > 10 &&
-						state.moviesState !is UiState.Loading &&
-						state.moviesState !is UiState.Initial &&
 						state.nextPageState !is UiState.Loading &&
 						state.nextPageState !is UiState.Initial
 

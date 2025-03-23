@@ -37,12 +37,15 @@ import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.SearchCard
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
+import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.component.ExploreContentSection
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_search
+import muppi.composeapp.generated.resources.nav_item_explore
 import muppi.composeapp.generated.resources.nunito_medium
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
+import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun ExploreScreenRoot(
@@ -75,10 +78,9 @@ fun ExploreScreen(
 	state: ExploreState,
 	onAction: (ExploreAction) -> Unit,
 ) {
+	LaunchedEffect(state.keyword, state.isMovie, state.genres) {
 
-	rememberCoroutineScope()
-
-	LaunchedEffect(state.keyword) {
+		logging { "keyword ${state.keyword}, isMovie ${state.isMovie}, genres ${state.genres}" }
 		onAction(
 			ExploreAction.ExploreMovieOrTv(
 				page = state.page,
@@ -87,6 +89,7 @@ fun ExploreScreen(
 			)
 		)
 	}
+
 
 	Box(
 		modifier = Modifier
@@ -124,7 +127,7 @@ fun ExploreScreen(
 							Text(
 								modifier = Modifier
 									.align(Alignment.Center),
-								text = "Explore",
+								text = stringResource(Res.string.nav_item_explore),
 								maxLines = 1,
 								overflow = TextOverflow.Ellipsis,
 								style = TextStyle(
@@ -141,6 +144,8 @@ fun ExploreScreen(
 									.align(Alignment.CenterEnd)
 									.clickable {
 										onAction(ExploreAction.OnClickSearchIcon(!state.isSearchFieldVisible))
+										onAction(ExploreAction.OnQueryChange(""))
+										onAction(ExploreAction.OnSelectGenres(emptyList()))
 									},
 								painter = painterResource(Res.drawable.ic_search),
 								contentDescription = null,
@@ -164,7 +169,6 @@ fun ExploreScreen(
 							placeholder = "Search",
 							onCancelSearch = {
 								onAction(ExploreAction.OnClickSearchIcon(!state.isSearchFieldVisible))
-								onAction(ExploreAction.OnQueryChange(""))
 							},
 							onValueChanged = { text ->
 								onAction(ExploreAction.OnQueryChange(text))
@@ -183,8 +187,6 @@ fun ExploreScreen(
 			val isReadyToScroll =
 				state.moviesState is UiState.Success &&
 						state.movies.size > 10 &&
-						state.moviesState !is UiState.Loading &&
-						state.moviesState !is UiState.Initial &&
 						state.nextPageState !is UiState.Loading &&
 						state.nextPageState !is UiState.Initial
 
@@ -198,6 +200,7 @@ fun ExploreScreen(
 
 			ExploreContentSection(
 				modifier = Modifier
+					.background(primaryBackground)
 					.padding(it),
 				lazyListState = lazyListState,
 				state = state,
@@ -206,6 +209,7 @@ fun ExploreScreen(
 				},
 				onSelectGenres = { genres ->
 					onAction(ExploreAction.OnSelectGenres(genres))
+					onAction(ExploreAction.OnClickSearchIcon(false))
 				},
 				onSelectType = { isMovie ->
 					onAction(ExploreAction.OnSelectType(isMovie))
