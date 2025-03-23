@@ -1,6 +1,5 @@
-package com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.component
+package com.nandaiqbalh.muppi.home_feature.presentation.home.list_screen.component
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -28,7 +27,6 @@ import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 import com.nandaiqbalh.muppi.core.presentation.components.items.MovieListItem
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
-import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.ExploreState
 import com.nandaiqbalh.muppi.home_feature.presentation.home.list_screen.ListMovieState
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.nunito_regular
@@ -36,15 +34,12 @@ import muppi.composeapp.generated.resources.tv_error_empty
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun ExploreContentSection(
+fun ListMovieContentSection(
 	modifier: Modifier = Modifier,
 	lazyListState: LazyListState,
-	state: ExploreState,
+	state: ListMovieState,
 	onClickItem: (Int) -> Unit,
-	onSelectType: (Boolean) -> Unit,
-	onSelectGenres: (List<Int>) -> Unit,
 ) {
 
 	LazyColumn(
@@ -52,12 +47,6 @@ fun ExploreContentSection(
 		modifier = modifier,
 		contentPadding = PaddingValues(16.dp)
 	) {
-
-		item {  }
-
-		stickyHeader {
-
-		}
 
 		if (state.moviesState is UiState.Error) {
 			item {
