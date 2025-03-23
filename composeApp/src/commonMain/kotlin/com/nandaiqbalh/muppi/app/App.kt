@@ -18,7 +18,8 @@ import androidx.navigation.compose.rememberNavController
 import com.nandaiqbalh.muppi.core.utils.orFalse
 import com.nandaiqbalh.muppi.core.utils.orTrue
 import com.nandaiqbalh.muppi.core.utils.orZero
-import com.nandaiqbalh.muppi.explore_feature.presentation.ExploreScreenRoot
+import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.ExploreScreenRoot
+import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.ExploreViewModel
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailScreenRoot
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.cast_screen.CastDetailViewModel
 import com.nandaiqbalh.muppi.home_feature.detail_movie.presentation.detail_screen.DetailScreenRoot
@@ -166,8 +167,14 @@ fun App() {
 					startDestination = Route.ExploreScreen
 				) {
 					composable<Route.ExploreScreen> {
-						ExploreScreenRoot(
 
+						val viewModel = koinViewModel<ExploreViewModel>()
+
+						ExploreScreenRoot(
+							viewModel = viewModel,
+							onClickMovieItem = { id, isMovie ->
+								navController.navigate(Route.DetailMovieScreen(id, isMovie = isMovie))
+							}
 						)
 					}
 				}

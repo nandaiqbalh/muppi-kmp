@@ -3,6 +3,11 @@ package com.nandaiqbalh.muppi.di
 import com.nandaiqbalh.muppi.core.data.remote.HttpClientFactory
 import com.nandaiqbalh.muppi.core.data.remote.setupKermit
 import com.nandaiqbalh.muppi.core.getPlatform
+import com.nandaiqbalh.muppi.explore_feature.data.repository.ExploreRepositoryImpl
+import com.nandaiqbalh.muppi.explore_feature.domain.repository.ExploreRepository
+import com.nandaiqbalh.muppi.explore_feature.domain.usecase.ExploreMovieOrTvUseCase
+import com.nandaiqbalh.muppi.explore_feature.domain.usecase.ExploreMovieOrTvUseCaseImpl
+import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.ExploreViewModel
 import com.nandaiqbalh.muppi.home_feature.detail_movie.data.repository.DetailRepositoryImpl
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.repository.DetailRepository
 import com.nandaiqbalh.muppi.home_feature.detail_movie.domain.usecase.GetCastDetailUseCase
@@ -50,6 +55,7 @@ val sharedModules = module {
 	// repository
 	singleOf(::HomeRepositoryImpl).bind<HomeRepository>()
 	singleOf(::DetailRepositoryImpl).bind<DetailRepository>()
+	singleOf(::ExploreRepositoryImpl).bind<ExploreRepository>()
 
 	// use case
 	singleOf(::GetNowPlayingMoviesUseCaseImpl).bind<GetNowPlayingMoviesUseCase>()
@@ -65,10 +71,14 @@ val sharedModules = module {
 	singleOf(::GetCastDetailUseCaseImpl).bind<GetCastDetailUseCase>()
 	singleOf(::GetCreditsUseCaseImpl).bind<GetCreditsUseCase>()
 
+	singleOf(::ExploreMovieOrTvUseCaseImpl).bind<ExploreMovieOrTvUseCase>()
+
 	// view model
 	viewModelOf(::SplashScreenViewModel)
 	viewModelOf(::HomeScreenViewModel)
 	viewModelOf(::DetailViewModel)
 	viewModelOf(::CastDetailViewModel)
 	viewModelOf(::ListMovieViewModel)
+
+	viewModelOf(::ExploreViewModel)
 }

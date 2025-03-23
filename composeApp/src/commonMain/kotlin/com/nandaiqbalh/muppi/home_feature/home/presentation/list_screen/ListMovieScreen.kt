@@ -32,7 +32,6 @@ import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.home_feature.home.presentation.list_screen.component.ListMovieContentSection
-import kotlinx.coroutines.delay
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_back
 import muppi.composeapp.generated.resources.ic_search
@@ -87,8 +86,6 @@ fun ListMovieScreen(
 	state: ListMovieState,
 	onAction: (ListMovieAction) -> Unit,
 ) {
-
-	logging { "source of page ${state.source}" }
 
 	LaunchedEffect(state.source){
 		onAction(ListMovieAction.GetMovieList(page = state.page, source = state.source, isFirstLoad = true))

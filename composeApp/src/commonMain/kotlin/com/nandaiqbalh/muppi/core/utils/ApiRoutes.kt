@@ -25,4 +25,9 @@ object ApiRoutes {
 	const val TV_CREDITS = "$BASE_URL/3/person/{person_id}/tv_credits"
 	const val MOVIE_CREDITS = "$BASE_URL/3/person/{person_id}/movie_credits"
 
+	const val DISCOVER_MOVIE = "$BASE_URL/3/discover/movie"
+	const val SEARCH_MOVIE = "$BASE_URL/3/search/movie"
+	const val DISCOVER_TV = "$BASE_URL/3/discover/tv"
+	const val SEARCH_TV = "$BASE_URL/3/search/tv"
+
 }
