@@ -18,14 +18,10 @@ fun MoviesDto.toMovies(): List<Movie> {
 			backdropPath = movieDto.backdropPath.orEmpty(),
 			genreIds = movieDto.genreIds.orEmpty(),
 			id = movieDto.id.orZero(),
-			originalLanguage = movieDto.originalLanguage.orEmpty(),
-			originalTitle = if (movieDto.originalTitle.isNullOrEmpty()) movieDto.original_name.orEmpty() else movieDto.originalTitle,
 			overview = movieDto.overview.orEmpty(),
-			popularity = movieDto.popularity.orZero(),
 			posterPath = movieDto.posterPath.orEmpty(),
 			releaseDate = movieDto.releaseDate.orEmpty(),
 			title = if (movieDto.title.isNullOrEmpty()) movieDto.original_name.orEmpty() else movieDto.title,
-			video = movieDto.video.orFalse(),
 			voteAverage = movieDto.voteAverage.orZero(),
 			voteCount = movieDto.voteCount.orZero()
 		)
@@ -40,14 +36,10 @@ fun MoviesDto.toMoviesByCast(): List<Movie> {
 			backdropPath = movieDto.backdropPath.orEmpty(),
 			genreIds = movieDto.genreIds.orEmpty(),
 			id = movieDto.id.orZero(),
-			originalLanguage = movieDto.originalLanguage.orEmpty(),
-			originalTitle = if (movieDto.originalTitle.isNullOrEmpty()) movieDto.original_name.orEmpty() else movieDto.originalTitle,
 			overview = movieDto.overview.orEmpty(),
-			popularity = movieDto.popularity.orZero(),
 			posterPath = movieDto.posterPath.orEmpty(),
 			releaseDate = movieDto.releaseDate.orEmpty(),
 			title = if (movieDto.title.isNullOrEmpty()) movieDto.original_name.orEmpty() else movieDto.title,
-			video = movieDto.video.orFalse(),
 			voteAverage = movieDto.voteAverage.orZero(),
 			voteCount = movieDto.voteCount.orZero()
 		)
@@ -80,14 +72,10 @@ fun SeriesDto.toMovies(): List<Movie> {
 			overview = resultSeries.overview.orEmpty(),
 			backdropPath = resultSeries.backdropPath.orEmpty(),
 			releaseDate = resultSeries.firstAirDate.orEmpty(),
-			popularity = resultSeries.popularity.orZero(),
 			posterPath = resultSeries.posterPath.orEmpty(),
 			voteAverage = resultSeries.voteAverage.orZero(),
 			voteCount = resultSeries.voteCount.orZero(),
-			originalLanguage = resultSeries.originalLanguage.orEmpty(),
-			originalTitle = resultSeries.originalName.orEmpty(),
 			genreIds = resultSeries.genreIds.orEmpty(),
-			video =  false
 		)
 	} ?: emptyList() // If results is null, return an empty list
 }
@@ -105,5 +93,39 @@ fun Movie.toMovieEntity(): MovieEntity {
 		voteAverage = this.voteAverage.orZero(),
 		voteCount = this.voteCount.orZero(),
 		isMovie = this.isMovie
+	)
+}
+
+fun MovieEntity.toMovie(): Movie {
+	return Movie(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie,
+	)
+}
+
+fun DetailMovie.toMovie(): Movie {
+	// Assuming we only need genre IDs from Genre objects, not the full objects
+	val genreIds = genres.map { it.id } // Assuming Genre has an 'id' field
+
+	return Movie(
+		adult = this.adult,
+		backdropPath = this.backdropPath,
+		genreIds = genreIds,  // Mapping genre list to genreIds
+		id = this.id,
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage,
+		voteCount = this.voteCount
 	)
 }

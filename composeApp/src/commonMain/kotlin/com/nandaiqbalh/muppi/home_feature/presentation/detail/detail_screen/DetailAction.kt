@@ -10,6 +10,8 @@ sealed interface DetailAction {
 
 	data class OnClickSimilar(val id: Int) : DetailAction
 
-	data class OnClickSave(val movie: DetailMovie) : DetailAction
+	data class OnSaveMovie(val movie: DetailMovie) : DetailAction
+
+	data class OnDeleteMovie(val id: Int) : DetailAction
 
 }

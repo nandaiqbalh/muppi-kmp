@@ -98,7 +98,7 @@ fun PulseAnimation(modifier: Modifier = Modifier) {
 
 @OptIn(ExperimentalResourceApi::class)
 @Composable
-fun LoadingNextPageComponent(modifier: Modifier = Modifier) {
+fun LoadingInfiniteComponent(modifier: Modifier = Modifier) {
 
 	val composition by rememberLottieComposition {
 		LottieCompositionSpec.JsonString(

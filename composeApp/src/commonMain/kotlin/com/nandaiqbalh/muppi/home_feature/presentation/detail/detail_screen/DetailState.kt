@@ -10,5 +10,8 @@ data class DetailState(
 	val detailMovie: UiState<DetailMovie> = UiState.Initial,
 	val casts: UiState<List<Cast>> = UiState.Initial,
 	val similarMovies: UiState<List<Movie>> = UiState.Initial,
-	val videos: UiState<List<Video>> = UiState.Initial
+	val videos: UiState<List<Video>> = UiState.Initial,
+	var saveState: UiState<Boolean> = UiState.Initial,
+	var deleteState: UiState<Boolean> = UiState.Initial,
+	val isFavorite: Boolean = false
 )

@@ -30,7 +30,8 @@ import com.nandaiqbalh.muppi.home_feature.presentation.home.list_screen.ListMovi
 import com.nandaiqbalh.muppi.home_feature.presentation.home.list_screen.ListMovieViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenRoot
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenViewModel
-import com.nandaiqbalh.muppi.saved_feature.presentation.SavedScreen
+import com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen.SavedMovieScreenRoot
+import com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen.SavedMovieViewModel
 import org.jetbrains.compose.ui.tooling.preview.Preview
 import org.koin.compose.viewmodel.koinViewModel
 
@@ -184,8 +185,10 @@ fun App() {
 					startDestination = Route.SavedScreen
 				) {
 					composable<Route.SavedScreen> {
-						SavedScreen(
+						val viewModel = koinViewModel<SavedMovieViewModel>()
 
+						SavedMovieScreenRoot(
+							viewModel = viewModel,
 						)
 					}
 				}

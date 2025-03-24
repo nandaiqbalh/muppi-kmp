@@ -11,19 +11,18 @@ interface SavedMovieDao{
 	@Upsert
 	suspend fun upsert(movieEntity: MovieEntity)
 
-	@Query("SELECT * FROM MovieEntity")
-	fun getSavedMovies(): Flow<List<MovieEntity>>
-
-	@Query("SELECT * FROM MovieEntity WHERE title LIKE '%' || :query || '%'")
-	fun searchSavedMovie(query: String): Flow<List<MovieEntity>>
-
-	@Query("SELECT * FROM MovieEntity WHERE isMovie = :isMovie AND (:genreIds IS NULL OR genreIds IN (:genreIds))")
-	fun filterMovie(isMovie: Boolean, genreIds: List<Int>?): Flow<List<MovieEntity>>
+	@Query("""
+        SELECT * FROM MovieEntity 
+        WHERE (:isMovie IS NULL OR isMovie = :isMovie)
+        AND (:genreIds IS NULL OR genreIds IN (:genreIds))
+        AND (:query IS NULL OR title LIKE '%' || :query || '%')
+    """)
+	fun getMovies(isMovie: Boolean? = null, genreIds: List<Int>? = null, query: String? = null): Flow<List<MovieEntity>>
 
 	@Query("SELECT * FROM MovieEntity WHERE id = :id")
-	suspend fun getSavedMovie(id: String): MovieEntity?
+	suspend fun getSavedMovie(id: Int): MovieEntity?
 
 	@Query("DELETE FROM MovieEntity WHERE id = :id")
-	suspend fun deleteSavedMovie(id: String)
+	suspend fun deleteSavedMovie(id: Int): Int
 
 }

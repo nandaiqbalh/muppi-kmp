@@ -40,6 +40,11 @@ import com.nandaiqbalh.muppi.home_feature.presentation.home.home_screen.HomeScre
 import com.nandaiqbalh.muppi.home_feature.presentation.home.list_screen.ListMovieViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenViewModel
 import com.nandaiqbalh.muppi.saved_feature.data.local_database.SavedMovieDatabase
+import com.nandaiqbalh.muppi.saved_feature.data.repository.SavedMovieRepositoryImpl
+import com.nandaiqbalh.muppi.saved_feature.domain.repository.SavedMovieRepository
+import com.nandaiqbalh.muppi.saved_feature.domain.usecase.SavedMovieUseCase
+import com.nandaiqbalh.muppi.saved_feature.domain.usecase.SavedMovieUseCaseImpl
+import com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen.SavedMovieViewModel
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
@@ -59,6 +64,7 @@ val sharedModules = module {
 	singleOf(::HomeRepositoryImpl).bind<HomeRepository>()
 	singleOf(::DetailRepositoryImpl).bind<DetailRepository>()
 	singleOf(::ExploreRepositoryImpl).bind<ExploreRepository>()
+	singleOf(::SavedMovieRepositoryImpl).bind<SavedMovieRepository>()
 
 	// use case
 	singleOf(::GetNowPlayingMoviesUseCaseImpl).bind<GetNowPlayingMoviesUseCase>()
@@ -76,6 +82,8 @@ val sharedModules = module {
 
 	singleOf(::ExploreMovieOrTvUseCaseImpl).bind<ExploreMovieOrTvUseCase>()
 
+	singleOf(::SavedMovieUseCaseImpl).bind<SavedMovieUseCase>()
+
 	// view model
 	viewModelOf(::SplashScreenViewModel)
 	viewModelOf(::HomeScreenViewModel)
@@ -84,6 +92,8 @@ val sharedModules = module {
 	viewModelOf(::ListMovieViewModel)
 
 	viewModelOf(::ExploreViewModel)
+
+	viewModelOf(::SavedMovieViewModel)
 
 	// local database
 	single {
