@@ -7,6 +7,7 @@ import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
 import com.nandaiqbalh.muppi.core.data.dto.SeriesDto
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
+import com.nandaiqbalh.muppi.saved_feature.data.local_database.MovieEntity
 
 // Extension function to map MoviesDto to a list of Movie objects
 fun MoviesDto.toMovies(): List<Movie> {
@@ -91,3 +92,18 @@ fun SeriesDto.toMovies(): List<Movie> {
 	} ?: emptyList() // If results is null, return an empty list
 }
 
+fun Movie.toMovieEntity(): MovieEntity {
+	return MovieEntity(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}

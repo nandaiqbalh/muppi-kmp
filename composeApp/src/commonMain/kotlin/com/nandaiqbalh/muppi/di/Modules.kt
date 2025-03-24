@@ -1,5 +1,7 @@
 package com.nandaiqbalh.muppi.di
 
+import androidx.sqlite.driver.bundled.BundledSQLiteDriver
+import com.nandaiqbalh.muppi.core.data.local_database.DatabaseFactory
 import com.nandaiqbalh.muppi.core.data.remote.HttpClientFactory
 import com.nandaiqbalh.muppi.core.data.remote.setupKermit
 import com.nandaiqbalh.muppi.core.getPlatform
@@ -37,6 +39,7 @@ import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetUpcomingMoviesUseCas
 import com.nandaiqbalh.muppi.home_feature.presentation.home.home_screen.HomeScreenViewModel
 import com.nandaiqbalh.muppi.home_feature.presentation.home.list_screen.ListMovieViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenViewModel
+import com.nandaiqbalh.muppi.saved_feature.data.local_database.SavedMovieDatabase
 import org.koin.core.module.Module
 import org.koin.core.module.dsl.singleOf
 import org.koin.core.module.dsl.viewModelOf
@@ -81,4 +84,16 @@ val sharedModules = module {
 	viewModelOf(::ListMovieViewModel)
 
 	viewModelOf(::ExploreViewModel)
+
+	// local database
+	single {
+		get<DatabaseFactory>().create()
+			.setDriver(BundledSQLiteDriver())
+			.build()
+	}
+
+	single {
+		get<SavedMovieDatabase>().savedMovieDao
+	}
+
 }
