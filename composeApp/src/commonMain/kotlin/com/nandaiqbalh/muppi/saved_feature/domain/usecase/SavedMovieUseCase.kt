@@ -2,7 +2,6 @@ package com.nandaiqbalh.muppi.saved_feature.domain.usecase
 
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.saved_feature.domain.repository.SavedMovieRepository
 import kotlinx.coroutines.flow.first
 
@@ -13,9 +12,6 @@ interface SavedMovieUseCase {
 
 	// Get movies based on filters
 	suspend fun getMovies(isMovie: Boolean? = null, query: String? = null): UiState<List<Movie>>
-
-	// Get movie details by ID
-	suspend fun getMovieDetails(id: Int): UiState<Movie?>
 
 	// Delete a movie by ID
 	suspend fun deleteMovie(id: Int): UiState<Boolean>
@@ -50,22 +46,6 @@ class SavedMovieUseCaseImpl(
 		} catch (e: Exception) {
 			// Handle error and return a UiState.Error
 			UiState.Error("Error fetching movies", emptyList())
-		}
-	}
-
-
-
-	// Get movie details by ID
-	override suspend fun getMovieDetails(id: Int): UiState<Movie?> {
-		return try {
-			val movie = savedMovieRepository.getSavedMovie(id)
-			if (movie != null) {
-				UiState.Success(movie)  // Successfully fetched movie details
-			} else {
-				UiState.Error("Movie not found", null)  // Movie not found error
-			}
-		} catch (e: Exception) {
-			UiState.Error("Error fetching movie details", null)  // Error handling
 		}
 	}
 

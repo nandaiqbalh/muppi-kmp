@@ -20,7 +20,7 @@ class GetDetailUseCaseImpl(
 		var resultState: UiState<DetailMovie> = UiState.Loading
 
 		try {
-			val movie = savedMovieRepository.getSavedMovie(movieId)
+			val movie = savedMovieRepository.getDetailMovie(movieId)
 			if (movie != null) {
 				resultState = UiState.Success(movie.toDetailMovie())  // Successfully fetched movie details
 			} else {

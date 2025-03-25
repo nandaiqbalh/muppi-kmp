@@ -6,6 +6,10 @@ import com.nandaiqbalh.muppi.core.utils.orFalse
 import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
 import com.nandaiqbalh.muppi.core.data.dto.SeriesDto
+import com.nandaiqbalh.muppi.core.data.local_database.model.NowPlayingEntity
+import com.nandaiqbalh.muppi.core.data.local_database.model.SeriesOnAirEntity
+import com.nandaiqbalh.muppi.core.data.local_database.model.TopRatedEntity
+import com.nandaiqbalh.muppi.core.data.local_database.model.UpcomingEntity
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
 import com.nandaiqbalh.muppi.core.domain.model.Genre
 import com.nandaiqbalh.muppi.core.domain.model.genreList
@@ -153,3 +157,139 @@ fun Movie.toDetailMovie(): DetailMovie {
 		originalTitle = this.title
 	)
 }
+
+fun Movie.toNowPlayingEntity(): NowPlayingEntity {
+	return NowPlayingEntity(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+
+fun NowPlayingEntity.toMovie(): Movie {
+	return Movie(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+fun Movie.toUpcomingEntity(): UpcomingEntity {
+	return UpcomingEntity(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+fun UpcomingEntity.toMovie(): Movie {
+	return Movie(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+
+fun Movie.toTopRatedEntity(): TopRatedEntity {
+	return TopRatedEntity(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+
+fun TopRatedEntity.toMovie(): Movie {
+	return Movie(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+
+fun Movie.toSeriesOnAirEntity(): SeriesOnAirEntity {
+	return SeriesOnAirEntity(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+
+fun SeriesOnAirEntity.toMovie(): Movie {
+	return Movie(
+		adult = this.adult.orFalse(),
+		backdropPath = this.backdropPath,
+		genreIds = this.genreIds,
+		id = this.id.orZero(),
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage.orZero(),
+		voteCount = this.voteCount.orZero(),
+		isMovie = this.isMovie
+	)
+}
+
+
+

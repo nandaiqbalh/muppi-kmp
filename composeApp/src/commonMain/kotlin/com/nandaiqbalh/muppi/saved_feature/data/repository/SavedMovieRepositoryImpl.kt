@@ -1,5 +1,6 @@
 package com.nandaiqbalh.muppi.saved_feature.data.repository
 
+import com.nandaiqbalh.muppi.core.data.local_database.dao.HomeOfflineMovieDao
 import com.nandaiqbalh.muppi.core.data.mapper.toMovie
 import com.nandaiqbalh.muppi.core.data.mapper.toMovieEntity
 import com.nandaiqbalh.muppi.core.domain.model.Movie
@@ -9,7 +10,8 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
 
 class SavedMovieRepositoryImpl(
-	private val savedMovieDao: SavedMovieDao
+	private val savedMovieDao: SavedMovieDao,
+	private val homeOfflineMovieDao: HomeOfflineMovieDao
 ) : SavedMovieRepository {
 
 	// Upsert (insert/update) a movie into the database
@@ -21,13 +23,38 @@ class SavedMovieRepositoryImpl(
 	// Get movies based on filter criteria
 	override fun getMovies(isMovie: Boolean?, query: String?): Flow<List<Movie>> {
 		return savedMovieDao.getMovies(isMovie, query)
-			.map { movieEntities -> movieEntities.map { it.toMovie() } } // Map MovieEntity to Movie
+			.map { movieEntities -> movieEntities.map { it.toMovie() }.reversed() } // Map MovieEntity to Movie
 	}
 
 	// Get a specific movie by ID
-	override suspend fun getSavedMovie(id: Int): Movie? {
-		return savedMovieDao.getSavedMovie(id)?.toMovie() // Map MovieEntity to Movie
+	override suspend fun getDetailMovie(id: Int): Movie? {
+		// Attempt to get the movie from the Now Playing DAO first
+		var movie = savedMovieDao.getSavedMovie(id)?.toMovie()
+
+		// If not found, try checking from the Now Playing DAO in homeOfflineMovieDao
+		if (movie == null) {
+			movie = homeOfflineMovieDao.getNowPlayingDetailMovie(id)?.toMovie()
+		}
+
+		// If still not found, try checking from the Upcoming DAO
+		if (movie == null) {
+			movie = homeOfflineMovieDao.getUpcomingDetailMovie(id)?.toMovie()
+		}
+
+		// Try checking from the Top Rated DAO
+		if (movie == null) {
+			movie = homeOfflineMovieDao.getTopRatedDetailMovie(id)?.toMovie()
+		}
+
+		// Try checking from the Series On Air DAO
+		if (movie == null) {
+			movie = homeOfflineMovieDao.getSeriesOnAirDetailMovie(id)?.toMovie()
+		}
+
+		return movie
 	}
+
+
 
 	// Delete a movie by ID
 	override suspend fun deleteSavedMovie(id: Int): Boolean {

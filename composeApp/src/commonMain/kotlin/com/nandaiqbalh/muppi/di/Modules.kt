@@ -1,7 +1,7 @@
 package com.nandaiqbalh.muppi.di
 
 import androidx.sqlite.driver.bundled.BundledSQLiteDriver
-import com.nandaiqbalh.muppi.core.data.local_database.DatabaseFactory
+import com.nandaiqbalh.muppi.core.data.local_database.room.DatabaseFactory
 import com.nandaiqbalh.muppi.core.data.remote.HttpClientFactory
 import com.nandaiqbalh.muppi.core.data.remote.setupKermit
 import com.nandaiqbalh.muppi.core.getPlatform
@@ -39,7 +39,11 @@ import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetUpcomingMoviesUseCas
 import com.nandaiqbalh.muppi.home_feature.presentation.home.home_screen.HomeScreenViewModel
 import com.nandaiqbalh.muppi.home_feature.presentation.home.list_screen.ListMovieViewModel
 import com.nandaiqbalh.muppi.onboarding_feature.presentation.SplashScreenViewModel
-import com.nandaiqbalh.muppi.saved_feature.data.local_database.SavedMovieDatabase
+import com.nandaiqbalh.muppi.core.data.local_database.room.MovieDatabase
+import com.nandaiqbalh.muppi.core.data.repository.HomeOfflineMovieRepository
+import com.nandaiqbalh.muppi.core.domain.repository.HomeOfflineMovieRepositoryImpl
+import com.nandaiqbalh.muppi.core.domain.usecase.HomeOfflineMovieUseCase
+import com.nandaiqbalh.muppi.core.domain.usecase.HomeOfflineMovieUseCaseImpl
 import com.nandaiqbalh.muppi.saved_feature.data.repository.SavedMovieRepositoryImpl
 import com.nandaiqbalh.muppi.saved_feature.domain.repository.SavedMovieRepository
 import com.nandaiqbalh.muppi.saved_feature.domain.usecase.SavedMovieUseCase
@@ -65,6 +69,7 @@ val sharedModules = module {
 	singleOf(::DetailRepositoryImpl).bind<DetailRepository>()
 	singleOf(::ExploreRepositoryImpl).bind<ExploreRepository>()
 	singleOf(::SavedMovieRepositoryImpl).bind<SavedMovieRepository>()
+	singleOf(::HomeOfflineMovieRepositoryImpl).bind<HomeOfflineMovieRepository>()
 
 	// use case
 	singleOf(::GetNowPlayingMoviesUseCaseImpl).bind<GetNowPlayingMoviesUseCase>()
@@ -83,6 +88,8 @@ val sharedModules = module {
 	singleOf(::ExploreMovieOrTvUseCaseImpl).bind<ExploreMovieOrTvUseCase>()
 
 	singleOf(::SavedMovieUseCaseImpl).bind<SavedMovieUseCase>()
+
+	singleOf(::HomeOfflineMovieUseCaseImpl).bind<HomeOfflineMovieUseCase>()
 
 	// view model
 	viewModelOf(::SplashScreenViewModel)
@@ -103,7 +110,10 @@ val sharedModules = module {
 	}
 
 	single {
-		get<SavedMovieDatabase>().savedMovieDao
+		get<MovieDatabase>().homeOfflineMovieDao
+	}
+	single {
+		get<MovieDatabase>().savedMovieDao
 	}
 
 }

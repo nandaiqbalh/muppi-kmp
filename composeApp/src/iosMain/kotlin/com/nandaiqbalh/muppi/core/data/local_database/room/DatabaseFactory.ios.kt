@@ -1,15 +1,15 @@
-package com.nandaiqbalh.muppi.core.data.local_database
+package com.nandaiqbalh.muppi.core.data.local_database.room
 
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import com.nandaiqbalh.muppi.saved_feature.data.local_database.SavedMovieDatabase
+import com.nandaiqbalh.muppi.core.data.local_database.room.MovieDatabase
 
 actual class DatabaseFactory {
-	actual fun create(): RoomDatabase.Builder<SavedMovieDatabase> {
+	actual fun create(): RoomDatabase.Builder<MovieDatabase> {
 
-		val dbFile = documentDirectory() + "/${SavedMovieDatabase.DB_NAME}"
+		val dbFile = documentDirectory() + "/${MovieDatabase.DB_NAME}"
 
-		return Room.databaseBuilder<SavedMovieDatabase>(
+		return Room.databaseBuilder<MovieDatabase>(
 			name = dbFile
 		)
 

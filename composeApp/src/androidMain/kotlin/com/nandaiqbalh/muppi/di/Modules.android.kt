@@ -1,6 +1,6 @@
 package com.nandaiqbalh.muppi.di
 
-import com.nandaiqbalh.muppi.core.data.local_database.DatabaseFactory
+import com.nandaiqbalh.muppi.core.data.local_database.room.DatabaseFactory
 import io.ktor.client.engine.HttpClientEngine
 import io.ktor.client.engine.okhttp.OkHttp
 import org.koin.android.ext.koin.androidApplication

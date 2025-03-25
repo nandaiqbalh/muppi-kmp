@@ -12,7 +12,7 @@ interface SavedMovieRepository {
 	fun getMovies(isMovie: Boolean? = null, query: String? = null): Flow<List<Movie>>
 
 	// Get a specific movie by ID
-	suspend fun getSavedMovie(id: Int): Movie?
+	suspend fun getDetailMovie(id: Int): Movie?
 
 	// Delete a movie by ID
 	suspend fun deleteSavedMovie(id: Int): Boolean

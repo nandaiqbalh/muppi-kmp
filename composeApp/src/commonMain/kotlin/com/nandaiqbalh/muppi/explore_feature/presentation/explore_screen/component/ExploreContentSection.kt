@@ -112,7 +112,7 @@ fun ExploreContentSection(
 					contentAlignment = Alignment.Center
 				) {
 					ErrorComponent(
-						modifier = Modifier.fillMaxSize()
+						modifier = Modifier.fillMaxSize().padding(top = 32.dp)
 					)
 				}
 			}

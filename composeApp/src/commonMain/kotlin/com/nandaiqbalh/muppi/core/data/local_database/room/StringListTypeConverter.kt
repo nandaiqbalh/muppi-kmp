@@ -1,4 +1,4 @@
-package com.nandaiqbalh.muppi.core.data.local_database
+package com.nandaiqbalh.muppi.core.data.local_database.room
 
 import androidx.room.TypeConverter
 import kotlinx.serialization.json.Json

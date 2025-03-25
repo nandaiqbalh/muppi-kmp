@@ -76,8 +76,12 @@ class ListMovieViewModel(
 
 					val previousMovies = state.value.movies
 
+					val newMovies = uiState.data.filterNot { newMovie ->
+						previousMovies.any { it.id == newMovie.id }  // Check if the movie id already exists in previousMovies
+					}
+
 					// Update the UI state
-					updateState { it.copy(moviesState = uiState, movies = previousMovies + uiState.data) }
+					updateState { it.copy(moviesState = uiState, movies = previousMovies + newMovies) }
 
 					updateState { it.copy(nextPageState = UiState.Success(false)) }
 
