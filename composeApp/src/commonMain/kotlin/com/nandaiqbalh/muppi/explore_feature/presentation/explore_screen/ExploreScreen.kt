@@ -22,7 +22,6 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -34,15 +33,16 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nandaiqbalh.muppi.core.domain.UiState
+import com.nandaiqbalh.muppi.core.presentation.components.PreventUserInteractionComponent
 import com.nandaiqbalh.muppi.core.presentation.components.SearchCard
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
-import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.component.ExploreContentSection
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_search
 import muppi.composeapp.generated.resources.nav_item_explore
 import muppi.composeapp.generated.resources.nunito_medium
+import muppi.composeapp.generated.resources.tv_search
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource
@@ -79,12 +79,10 @@ fun ExploreScreen(
 	onAction: (ExploreAction) -> Unit,
 ) {
 	LaunchedEffect(state.keyword, state.isMovie, state.genres) {
-
-		logging { "keyword ${state.keyword}, isMovie ${state.isMovie}, genres ${state.genres}" }
 		onAction(
 			ExploreAction.ExploreMovieOrTv(
 				page = state.page,
-				isMovie = true,
+				isMovie = state.isMovie,
 				isFirstLoad = true
 			)
 		)
@@ -165,7 +163,7 @@ fun ExploreScreen(
 						)
 					) {
 						SearchCard(modifier = Modifier.fillMaxWidth(),
-							placeholder = "Search",
+							placeholder = stringResource(Res.string.tv_search),
 							onCancelSearch = {
 								onAction(ExploreAction.OnClickSearchIcon(!state.isSearchFieldVisible))
 							},
@@ -190,6 +188,18 @@ fun ExploreScreen(
 						state.nextPageState !is UiState.Initial
 
 			val isNeedScroll = isAtBottom && isReadyToScroll
+
+			LaunchedEffect(isNeedScroll){
+				if(isNeedScroll){
+					onAction(
+						ExploreAction.ExploreMovieOrTv(
+							page = state.page,
+							isMovie = state.isMovie,
+							isFirstLoad = false
+						)
+					)
+				}
+			}
 
 			LaunchedEffect(isAtBottom) {
 				if (isAtBottom && state.movies.size > 10) {

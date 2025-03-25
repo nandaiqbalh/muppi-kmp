@@ -90,23 +90,7 @@ fun DetailScreenRoot(
 					onClickSimilarMovie(action.id, isMovie)
 				}
 				is DetailAction.OnSaveMovie -> {
-					scope.launch {
-						dialogState.apply {
-							showDialog = true
-							type = Constant.DialogType.WARNING
-							title = getString(Res.string.save_movie_title)
-							description = getString(Res.string.save_movie_description)
-							buttonDismiss = getString(Res.string.cancel)
-							onClickDismiss = {
-								showDialog = false
-							}
-							buttonConfirm = getString(Res.string.save)
-							onClickConfirm = {
-								showDialog = false
-								viewModel.saveMovie(action.movie.toMovie().copy(isMovie = isMovie))
-							}
-						}
-					}
+					viewModel.saveMovie(action.movie.toMovie().copy(isMovie = isMovie))
 				}
 				is DetailAction.OnDeleteMovie -> {
 					scope.launch {

@@ -22,7 +22,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
-import com.nandaiqbalh.muppi.core.presentation.components.LoadingInfiniteComponent
+import com.nandaiqbalh.muppi.core.presentation.components.PreventUserInteractionComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 import com.nandaiqbalh.muppi.core.presentation.components.items.MovieListItem
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
@@ -108,18 +108,11 @@ fun ListMovieContentSection(
 				}
 			}
 		}
-
-		if (state.nextPageState is UiState.Loading){
-
-			item {
-				LoadingInfiniteComponent()
-			}
-
-			item {
-				Spacer(
-					modifier = Modifier.height(16.dp)
-				)
-			}
+		item {
+			PreventUserInteractionComponent(
+				isPreventUserInteraction = state.nextPageState is UiState.Loading,
+				isNeedIndicator = true
+			)
 		}
 	}
 }

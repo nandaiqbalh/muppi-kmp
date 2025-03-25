@@ -38,6 +38,8 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun ErrorComponent(
 	modifier: Modifier = Modifier,
+	title: String = stringResource(Res.string.tv_error_general),
+	imageModifier: Modifier = Modifier
 ) {
 
 	var isVisible by remember { mutableStateOf(false) }
@@ -66,7 +68,7 @@ fun ErrorComponent(
 			) {
 				// Error Icon
 				Image(
-					modifier = Modifier,
+					modifier = imageModifier,
 					painter = painterResource(Res.drawable.ic_error_general),
 					contentDescription = null,
 				)
@@ -76,7 +78,7 @@ fun ErrorComponent(
 				// Error Text
 				Text(
 					modifier = Modifier,
-					text = stringResource(Res.string.tv_error_general),
+					text = title,
 					style = TextStyle(
 						fontFamily = FontFamily(Font(Res.font.nunito_medium)),
 						fontSize = 13.sp,

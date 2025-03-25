@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyListState
 import androidx.compose.foundation.lazy.itemsIndexed
@@ -20,22 +21,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontFamily
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
-import com.nandaiqbalh.muppi.core.presentation.components.LoadingInfiniteComponent
+import com.nandaiqbalh.muppi.core.presentation.components.PreventUserInteractionComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
 import com.nandaiqbalh.muppi.core.presentation.components.items.MovieListItem
 import com.nandaiqbalh.muppi.core.presentation.inactiveDarkColor
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
-import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.component.FilterTypeSection
 import com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen.SavedMovieState
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.nunito_regular
-import muppi.composeapp.generated.resources.tv_error_empty
+import muppi.composeapp.generated.resources.tv_empty_query
+import muppi.composeapp.generated.resources.tv_empty_saved_movie
+import muppi.composeapp.generated.resources.tv_empty_saved_tv
 import muppi.composeapp.generated.resources.tv_type
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
@@ -53,7 +54,7 @@ fun SavedMovieContentSection(
 	LazyColumn(
 		state = lazyListState,
 		modifier = modifier.background(primaryBackground),
-		contentPadding = PaddingValues(16.dp)
+		contentPadding = PaddingValues(start = 16.dp, end = 16.dp, bottom = 16.dp)
 	) {
 
 		stickyHeader{
@@ -113,16 +114,29 @@ fun SavedMovieContentSection(
 
 		if (state.movies.isEmpty() && state.moviesState !is UiState.Loading) {
 			item {
-				Text(
-					text = stringResource(Res.string.tv_error_empty),
-					modifier = Modifier.padding(16.dp),
-					style = TextStyle(
-						fontFamily = FontFamily(Font(Res.font.nunito_regular)),
-						fontSize = 10.sp,
-						color = primaryFont,
-						textAlign = TextAlign.Start
+				if (state.keyword.isNotEmpty()){
+					ErrorComponent(
+						title = stringResource(Res.string.tv_empty_query),
+						imageModifier = Modifier.size(50.dp),
+						modifier = Modifier.fillMaxWidth().height(270.dp)
 					)
-				)
+				} else {
+
+					if (state.isMovie){
+						ErrorComponent(
+							title = stringResource(Res.string.tv_empty_saved_movie),
+							imageModifier = Modifier.size(50.dp),
+							modifier = Modifier.fillMaxWidth().height(270.dp)
+						)
+					} else {
+						ErrorComponent(
+							title = stringResource(Res.string.tv_empty_saved_tv),
+							imageModifier = Modifier.size(50.dp),
+							modifier = Modifier.fillMaxWidth().height(270.dp)
+						)
+					}
+
+				}
 			}
 		} else if (state.moviesState is UiState.Success) {
 
@@ -143,17 +157,15 @@ fun SavedMovieContentSection(
 			}
 		}
 
-		if (state.nextPageState is UiState.Loading) {
+		item {
+			PreventUserInteractionComponent(
+				isPreventUserInteraction = state.nextPageState is UiState.Loading,
+				isNeedIndicator = true
+			)
+		}
 
-			item {
-				LoadingInfiniteComponent()
-			}
-
-			item {
-				Spacer(
-					modifier = Modifier.height(16.dp)
-				)
-			}
+		item {
+			Spacer(modifier = Modifier.height(70.dp))
 		}
 	}
 }

@@ -189,6 +189,9 @@ fun App() {
 
 						SavedMovieScreenRoot(
 							viewModel = viewModel,
+							onClickItem = { id, isMovie ->
+								navController.navigate(Route.DetailMovieScreen(id, isMovie = isMovie))
+							}
 						)
 					}
 				}

@@ -3,6 +3,7 @@ package com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nandaiqbalh.muppi.core.domain.UiState
+import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.explore_feature.domain.usecase.ExploreMovieOrTvUseCase
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -20,9 +21,6 @@ class ExploreViewModel(
 		when (action) {
 			is ExploreAction.ExploreMovieOrTv -> {
 				exploreMovieOrTv(
-					page = action.page,
-					language = action.language,
-					isMovie = action.isMovie,
 					isFirstLoad = action.isFirstLoad
 				)
 			}
@@ -30,7 +28,10 @@ class ExploreViewModel(
 				updateState { it.copy(isSearchFieldVisible = action.isVisible) }
 			}
 			is ExploreAction.OnQueryChange -> {
-				updateState { it.copy(keyword = action.keyword, genres = emptyList()) }
+				viewModelScope.launch {
+					delay(2000)
+					updateState { it.copy(keyword = action.keyword, genres = emptyList()) }
+				}
 			}
 			is ExploreAction.OnSelectGenres -> {
 				updateState { it.copy(genres = action.genres, keyword = "") }
@@ -47,7 +48,7 @@ class ExploreViewModel(
 	}
 
 	private fun exploreMovieOrTv(
-		page: Int = 1,
+		page: Int = state.value.page,
 		genres: List<Int> = state.value.genres,
 		isMovie: Boolean = state.value.isMovie,
 		language: String = "en-US",
@@ -64,7 +65,6 @@ class ExploreViewModel(
 
 			val stringGenres = genres.joinToString("|")
 
-			delay(3000)
 			when (val uiState = exploreMovieOrTvUseCase.execute(page, isMovie, language, stringGenres, keyword)) {
 				is UiState.Success -> {
 

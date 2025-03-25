@@ -36,6 +36,7 @@
     <string name="tv_movies_by_cast">Movies by Cast</string>
 
     <!-- Genre Information -->
+    <string name="tv_search">Search movies or TV series</string>
     <string name="tv_genre">Genre</string>
     <string name="tv_all">All</string>
     <string name="tv_type">Type</string>
@@ -62,5 +63,9 @@
     <!-- Save Movie Dialog -->
     <string name="save_movie_title">Save Movie?</string>
     <string name="save_movie_description">Are you sure you want to save this movie to your watch list?</string>
+
+    <string name="tv_empty_saved_movie">You haven't saved any movies to your watch list yet.</string>
+    <string name="tv_empty_saved_tv">You haven't saved any TV series to your watch list yet.</string>
+    <string name="tv_empty_query">Try searching with another query to find movies or TV series.</string>
 
 </resources>

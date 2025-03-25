@@ -7,6 +7,8 @@ import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
 import com.nandaiqbalh.muppi.core.data.dto.SeriesDto
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
+import com.nandaiqbalh.muppi.core.domain.model.Genre
+import com.nandaiqbalh.muppi.core.domain.model.genreList
 import com.nandaiqbalh.muppi.saved_feature.data.local_database.MovieEntity
 
 // Extension function to map MoviesDto to a list of Movie objects
@@ -113,13 +115,13 @@ fun MovieEntity.toMovie(): Movie {
 }
 
 fun DetailMovie.toMovie(): Movie {
-	// Assuming we only need genre IDs from Genre objects, not the full objects
-	val genreIds = genres.map { it.id } // Assuming Genre has an 'id' field
+	// Map the genres list to only genre IDs
+	val genreIds = genres.map { it.id }  // Map the Genre objects to their ids
 
 	return Movie(
 		adult = this.adult,
 		backdropPath = this.backdropPath,
-		genreIds = genreIds,  // Mapping genre list to genreIds
+		genreIds = genreIds,  // Pass the list of genre IDs
 		id = this.id,
 		overview = this.overview,
 		posterPath = this.posterPath,
@@ -127,5 +129,27 @@ fun DetailMovie.toMovie(): Movie {
 		title = this.title,
 		voteAverage = this.voteAverage,
 		voteCount = this.voteCount
+	)
+}
+
+fun Movie.toDetailMovie(): DetailMovie {
+	// Map the genreIds list to Genre objects
+	val genres = genreIds.mapNotNull { genreId ->
+		genreList.find { it.id == genreId }  // Find the Genre object by its ID
+	}  // Remove nulls in case an invalid ID was passed
+
+	return DetailMovie(
+		adult = this.adult,
+		backdropPath = this.backdropPath,
+		genres = genres,  // Pass the list of Genre objects
+		id = this.id,
+		overview = this.overview,
+		posterPath = this.posterPath,
+		releaseDate = this.releaseDate,
+		title = this.title,
+		voteAverage = this.voteAverage,
+		voteCount = this.voteCount,
+		video = false,
+		originalTitle = this.title
 	)
 }

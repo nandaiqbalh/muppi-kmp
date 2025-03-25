@@ -49,18 +49,12 @@ import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryColor
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.core.utils.Constant
-import io.github.alexzhirkevich.compottie.Compottie
-import io.github.alexzhirkevich.compottie.LottieCompositionSpec
-import io.github.alexzhirkevich.compottie.rememberLottieComposition
-import io.github.alexzhirkevich.compottie.rememberLottiePainter
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_dialog_error
 import muppi.composeapp.generated.resources.ic_dialog_success
 import muppi.composeapp.generated.resources.ic_dialog_warning
-import muppi.composeapp.generated.resources.ic_search_field
 import muppi.composeapp.generated.resources.nunito_regular
 import muppi.composeapp.generated.resources.nunito_semibold
-import org.jetbrains.compose.resources.ExperimentalResourceApi
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
 
@@ -70,7 +64,6 @@ class GeneralDialogState internal constructor() {
 	var type by mutableStateOf(Constant.DialogType.ERROR)
 	var title by mutableStateOf("")
 	var description by mutableStateOf("")
-	var otpCode by mutableStateOf("")
 	var buttonDismiss by mutableStateOf("")
 	var buttonConfirm by mutableStateOf("")
 	var onClickDismiss by mutableStateOf({})
@@ -115,7 +108,7 @@ fun GeneralDialog(
 					Constant.DialogType.WARNING -> painterResource(Res.drawable.ic_dialog_warning)
 					else -> painterResource(Res.drawable.ic_dialog_error)
 				},
-				modifier = Modifier.height(110.dp),
+				modifier = Modifier.height(60.dp),
 				contentScale = ContentScale.FillHeight,
 				contentDescription = "",
 			)
@@ -254,25 +247,18 @@ fun CustomAnimatedDialog(dialogState: GeneralDialogState) {
 		Box(
 			modifier = Modifier.fillMaxSize().navigationBarsPadding()
 				.padding(horizontal = 16.dp, vertical = 16.dp),
-			contentAlignment = Alignment.Center
+			contentAlignment = Alignment.BottomCenter
 		) {
 			GeneralDialogItemBottom(dialogState)
 		}
 	}
 }
 
-@OptIn(ExperimentalResourceApi::class)
 @Composable
 fun PreventUserInteractionComponent(
 	isPreventUserInteraction: Boolean = false,
 	isNeedIndicator: Boolean = true
 ) {
-
-	val composition by rememberLottieComposition {
-		LottieCompositionSpec.JsonString(
-			Res.readBytes("files/loading.json").decodeToString()
-		)
-	}
 
 	if (
 		isPreventUserInteraction
@@ -286,17 +272,11 @@ fun PreventUserInteractionComponent(
 					interactionSource = remember { MutableInteractionSource() } // Prevents other interactions from being tracked
 				) {
 					// Action when the background is clicked (if needed)
-				}
+				},
+			contentAlignment = Alignment.Center
 		){
 			if (isNeedIndicator){
-				Image(
-					modifier = Modifier.align(Alignment.Center),
-					painter = rememberLottiePainter(
-						composition = composition,
-						iterations = Compottie.IterateForever
-					),
-					contentDescription = "Lottie animation"
-				)
+				PulseAnimation()
 			}
 		}
 	}

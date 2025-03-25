@@ -32,14 +32,12 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.presentation.components.SearchCard
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen.component.SavedMovieContentSection
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_search
-import muppi.composeapp.generated.resources.nav_item_explore
 import muppi.composeapp.generated.resources.nav_item_saved
 import muppi.composeapp.generated.resources.nunito_medium
 import org.jetbrains.compose.resources.Font
@@ -49,6 +47,7 @@ import org.jetbrains.compose.resources.stringResource
 @Composable
 fun SavedMovieScreenRoot(
 	viewModel: SavedMovieViewModel,
+	onClickItem: (Int, Boolean) -> Unit
 ) {
 
 	val state by viewModel.state.collectAsStateWithLifecycle()
@@ -57,7 +56,9 @@ fun SavedMovieScreenRoot(
 		state = state,
 		onAction = { action ->
 			when (action) {
-
+				is SavedMovieAction.OnClickItem -> {
+					onClickItem(action.id, state.isMovie)
+				}
 				else -> {
 					Unit
 				}
@@ -174,28 +175,10 @@ fun SavedMovieScreen(
 
 			val lazyListState = rememberLazyListState()
 
-			val isAtBottom =
-				lazyListState.layoutInfo.visibleItemsInfo.isNotEmpty() &&
-						lazyListState.layoutInfo.visibleItemsInfo.last().index == lazyListState.layoutInfo.totalItemsCount - 1
-			val isReadyToScroll =
-				state.moviesState is UiState.Success &&
-						state.movies.size > 10 &&
-						state.nextPageState !is UiState.Loading &&
-						state.nextPageState !is UiState.Initial
-
-			val isNeedScroll = isAtBottom && isReadyToScroll
-
-			LaunchedEffect(isAtBottom) {
-				if (isAtBottom && state.movies.size > 10) {
-					onAction(SavedMovieAction.OnReachBottom(state.page + 1))
-				}
-			}
-
 			SavedMovieContentSection(
 				modifier = Modifier
 					.background(primaryBackground)
-					.padding(it)
-					.padding(bottom = 100.dp),
+					.padding(it),
 				lazyListState = lazyListState,
 				state = state,
 				onClickItem = { id ->

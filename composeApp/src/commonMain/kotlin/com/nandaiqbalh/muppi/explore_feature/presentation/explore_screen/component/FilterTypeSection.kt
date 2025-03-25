@@ -47,7 +47,6 @@ fun FilterTypeSection(onSelectType: (Boolean) -> Unit) {
 		verticalAlignment = Alignment.CenterVertically,
 		horizontalArrangement = Arrangement.Start
 	) {
-		// Define a list of types ("Movie" and "TV Series")
 		val types = listOf(stringResource(Res.string.tv_movie) to true, stringResource(Res.string.tv_tv_or_series) to false)
 
 		types.forEach { (label, isMovie) ->
