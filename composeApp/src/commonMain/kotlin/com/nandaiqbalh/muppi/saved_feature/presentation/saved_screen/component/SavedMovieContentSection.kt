@@ -31,13 +31,11 @@ import com.nandaiqbalh.muppi.core.presentation.components.items.MovieListItem
 import com.nandaiqbalh.muppi.core.presentation.inactiveDarkColor
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
-import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.component.FilterGenreSection
 import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.component.FilterTypeSection
 import com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen.SavedMovieState
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.nunito_regular
 import muppi.composeapp.generated.resources.tv_error_empty
-import muppi.composeapp.generated.resources.tv_genre
 import muppi.composeapp.generated.resources.tv_type
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.stringResource
@@ -50,7 +48,6 @@ fun SavedMovieContentSection(
 	state: SavedMovieState,
 	onClickItem: (Int) -> Unit,
 	onSelectType: (Boolean) -> Unit,
-	onSelectGenres: (List<Int>) -> Unit,
 ) {
 
 	LazyColumn(
@@ -59,28 +56,7 @@ fun SavedMovieContentSection(
 		contentPadding = PaddingValues(16.dp)
 	) {
 
-		item {
-
-			Text(
-				text = stringResource(Res.string.tv_type),
-				style = TextStyle(
-					fontFamily = FontFamily(Font(Res.font.nunito_regular)),
-					fontSize = 13.sp,
-					color = inactiveDarkColor,
-				)
-			)
-
-			Spacer(modifier = Modifier.height(8.dp))
-
-			FilterTypeSection {
-				onSelectType(it)
-			}
-
-			Spacer(modifier = Modifier.height(16.dp))
-
-		}
-
-		stickyHeader {
+		stickyHeader{
 
 			Column(
 				modifier = Modifier
@@ -89,23 +65,21 @@ fun SavedMovieContentSection(
 			){
 
 				Text(
-					text = stringResource(Res.string.tv_genre),
+					text = stringResource(Res.string.tv_type),
 					style = TextStyle(
 						fontFamily = FontFamily(Font(Res.font.nunito_regular)),
 						fontSize = 13.sp,
 						color = inactiveDarkColor,
 					)
 				)
-
 				Spacer(modifier = Modifier.height(8.dp))
 
-				FilterGenreSection(genres = state.genres) {
-					onSelectGenres(it)
+				FilterTypeSection {
+					onSelectType(it)
 				}
 
 				Spacer(modifier = Modifier.height(16.dp))
 			}
-
 		}
 
 		if (state.moviesState is UiState.Error) {

@@ -5,6 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.nandaiqbalh.muppi.core.data.mapper.toMovie
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.domain.model.Movie
+import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetDetailUseCase
 import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetCastsUseCase
 import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetSimilarUseCase
@@ -93,6 +94,7 @@ class DetailViewModel(
 			updateState { it.copy(saveState = UiState.Loading) }
 
 			delay(2000)
+			logging { "saved movie $movie" }
 			val uiState = savedMovieUseCase.insertMovie(movie)
 
 			updateState { it.copy(saveState = uiState) }

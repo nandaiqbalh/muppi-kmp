@@ -9,7 +9,7 @@ interface SavedMovieRepository {
 	suspend fun upsertMovie(movie: Movie)
 
 	// Get movies based on filtering criteria
-	fun getMovies(isMovie: Boolean? = null, genreIds: List<Int>? = null, query: String? = null): Flow<List<Movie>>
+	fun getMovies(isMovie: Boolean? = null, query: String? = null): Flow<List<Movie>>
 
 	// Get a specific movie by ID
 	suspend fun getSavedMovie(id: Int): Movie?

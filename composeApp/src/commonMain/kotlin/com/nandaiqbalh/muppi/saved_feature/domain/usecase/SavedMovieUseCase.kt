@@ -2,9 +2,9 @@ package com.nandaiqbalh.muppi.saved_feature.domain.usecase
 
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.domain.model.Movie
+import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.saved_feature.domain.repository.SavedMovieRepository
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.first
 
 interface SavedMovieUseCase {
 
@@ -12,7 +12,7 @@ interface SavedMovieUseCase {
 	suspend fun insertMovie(movie: Movie): UiState<Boolean>
 
 	// Get movies based on filters
-	fun getMovies(isMovie: Boolean? = null, genreIds: List<Int>? = null, query: String? = null): Flow<UiState<List<Movie>>>
+	suspend fun getMovies(isMovie: Boolean? = null, query: String? = null): UiState<List<Movie>>
 
 	// Get movie details by ID
 	suspend fun getMovieDetails(id: Int): UiState<Movie?>
@@ -40,17 +40,20 @@ class SavedMovieUseCaseImpl(
 	}
 
 	// Get movies based on filters
-	override fun getMovies(isMovie: Boolean?, genreIds: List<Int>?, query: String?): Flow<UiState<List<Movie>>> {
-		return flow {
-			try {
-				savedMovieRepository.getMovies(isMovie, genreIds, query).collect { movieList ->
-					emit(UiState.Success(movieList))  // Successfully fetched movies
-				}
-			} catch (e: Exception) {
-				emit(UiState.Error("Error fetching movies", emptyList()))  // Error handling
-			}
+	override suspend fun getMovies(isMovie: Boolean?, query: String?): UiState<List<Movie>> {
+		return try {
+			// Collect the Flow to get the result
+			val movieList = savedMovieRepository.getMovies(isMovie, query).first() // Collecting the first item from the Flow
+
+			// Return success with the movie list
+			UiState.Success(movieList)
+		} catch (e: Exception) {
+			// Handle error and return a UiState.Error
+			UiState.Error("Error fetching movies", emptyList())
 		}
 	}
+
+
 
 	// Get movie details by ID
 	override suspend fun getMovieDetails(id: Int): UiState<Movie?> {

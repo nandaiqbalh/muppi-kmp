@@ -60,7 +60,7 @@ fun ExploreScreenRoot(
 		onAction = { action ->
 			when (action) {
 				is ExploreAction.OnClickItem -> {
-					onClickMovieItem(action.id, true)
+					onClickMovieItem(action.id, state.isMovie)
 				}
 
 				else -> {
@@ -144,8 +144,7 @@ fun ExploreScreen(
 									.align(Alignment.CenterEnd)
 									.clickable {
 										onAction(ExploreAction.OnClickSearchIcon(!state.isSearchFieldVisible))
-										onAction(ExploreAction.OnQueryChange(""))
-										onAction(ExploreAction.OnSelectGenres(emptyList()))
+
 									},
 								painter = painterResource(Res.drawable.ic_search),
 								contentDescription = null,

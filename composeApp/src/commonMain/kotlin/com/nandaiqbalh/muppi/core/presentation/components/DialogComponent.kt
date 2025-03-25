@@ -280,7 +280,7 @@ fun PreventUserInteractionComponent(
 		Box(
 			modifier = Modifier
 				.fillMaxSize()
-				.background(Color.Transparent)
+				.background(primaryBackground.copy(0.5f))
 				.clickable(
 					indication = null, // Removes any ripple effect
 					interactionSource = remember { MutableInteractionSource() } // Prevents other interactions from being tracked

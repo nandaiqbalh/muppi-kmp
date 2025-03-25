@@ -9,7 +9,6 @@ data class SavedMovieState(
 	val movies: List<Movie> = emptyList(),
 	val page: Int = 1,
 	val keyword: String = "",
-	val genres: List<Int> = emptyList(),
 	val isMovie: Boolean = true,
 	val isSearchFieldVisible: Boolean = false
 )

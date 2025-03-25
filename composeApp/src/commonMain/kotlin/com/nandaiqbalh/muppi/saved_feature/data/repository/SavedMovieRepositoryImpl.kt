@@ -19,8 +19,8 @@ class SavedMovieRepositoryImpl(
 	}
 
 	// Get movies based on filter criteria
-	override fun getMovies(isMovie: Boolean?, genreIds: List<Int>?, query: String?): Flow<List<Movie>> {
-		return savedMovieDao.getMovies(isMovie, genreIds, query)
+	override fun getMovies(isMovie: Boolean?, query: String?): Flow<List<Movie>> {
+		return savedMovieDao.getMovies(isMovie, query)
 			.map { movieEntities -> movieEntities.map { it.toMovie() } } // Map MovieEntity to Movie
 	}
 

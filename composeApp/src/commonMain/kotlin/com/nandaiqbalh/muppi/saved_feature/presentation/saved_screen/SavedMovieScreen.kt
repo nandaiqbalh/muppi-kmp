@@ -40,6 +40,7 @@ import com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen.component.S
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_search
 import muppi.composeapp.generated.resources.nav_item_explore
+import muppi.composeapp.generated.resources.nav_item_saved
 import muppi.composeapp.generated.resources.nunito_medium
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
@@ -73,13 +74,12 @@ fun SavedMovieScreen(
 	onAction: (SavedMovieAction) -> Unit,
 ) {
 
-	LaunchedEffect(state.keyword, state.isMovie, state.genres) {
+	LaunchedEffect(state.keyword, state.isMovie) {
 
 		onAction(
-			SavedMovieAction.ExploreMovieOrTv(
-				page = state.page,
-				isMovie = true,
-				isFirstLoad = true
+			SavedMovieAction.GetSavedMovies(
+				isMovie = state.isMovie,
+				query = state.keyword
 			)
 		)
 	}
@@ -121,7 +121,7 @@ fun SavedMovieScreen(
 							Text(
 								modifier = Modifier
 									.align(Alignment.Center),
-								text = stringResource(Res.string.nav_item_explore),
+								text = stringResource(Res.string.nav_item_saved),
 								maxLines = 1,
 								overflow = TextOverflow.Ellipsis,
 								style = TextStyle(
@@ -139,7 +139,6 @@ fun SavedMovieScreen(
 									.clickable {
 										onAction(SavedMovieAction.OnClickSearchIcon(!state.isSearchFieldVisible))
 										onAction(SavedMovieAction.OnQueryChange(""))
-										onAction(SavedMovieAction.OnSelectGenres(emptyList()))
 									},
 								painter = painterResource(Res.drawable.ic_search),
 								contentDescription = null,
@@ -195,15 +194,12 @@ fun SavedMovieScreen(
 			SavedMovieContentSection(
 				modifier = Modifier
 					.background(primaryBackground)
-					.padding(it),
+					.padding(it)
+					.padding(bottom = 100.dp),
 				lazyListState = lazyListState,
 				state = state,
 				onClickItem = { id ->
 					onAction(SavedMovieAction.OnClickItem(id))
-				},
-				onSelectGenres = { genres ->
-					onAction(SavedMovieAction.OnSelectGenres(genres))
-					onAction(SavedMovieAction.OnClickSearchIcon(false))
 				},
 				onSelectType = { isMovie ->
 					onAction(SavedMovieAction.OnSelectType(isMovie))

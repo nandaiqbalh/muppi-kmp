@@ -18,17 +18,17 @@ class SavedMovieViewModel(
 
 	fun onAction(action: SavedMovieAction) {
 		when (action) {
-			is SavedMovieAction.ExploreMovieOrTv -> {
-				getSavedMovies()
+			is SavedMovieAction.GetSavedMovies -> {
+				getSavedMovies(
+					isMovie = action.isMovie,
+					query = action.query
+				)
 			}
 			is SavedMovieAction.OnClickSearchIcon -> {
 				updateState { it.copy(isSearchFieldVisible = action.isVisible) }
 			}
 			is SavedMovieAction.OnQueryChange -> {
-				updateState { it.copy(keyword = action.keyword, genres = emptyList()) }
-			}
-			is SavedMovieAction.OnSelectGenres -> {
-				updateState { it.copy(genres = action.genres, keyword = "") }
+				updateState { it.copy(keyword = action.keyword) }
 			}
 			is SavedMovieAction.OnSelectType -> {
 				updateState { it.copy(isMovie = action.isMovie) }
@@ -42,18 +42,30 @@ class SavedMovieViewModel(
 	}
 
 	private fun getSavedMovies(
-		isMovie: Boolean? = null, genreIds: List<Int>? = null, query: String? = null,
+		isMovie: Boolean? = null, query: String? = null,
 	) {
 		viewModelScope.launch {
-			savedMovieUseCase.getMovies(isMovie, genreIds, query).collect{ result ->
-				when(result){
-					is UiState.Success -> {
-						logging { "data movie ${result.data.first()}" }
-						updateState { it.copy(movies = result.data, moviesState = UiState.Success(result.data)) }
+
+			updateState { it.copy(moviesState = UiState.Loading) }
+
+			val uiState = savedMovieUseCase.getMovies(isMovie, query)
+
+			when (uiState) {
+				is UiState.Success -> {
+					updateState {
+						it.copy(
+							movies = uiState.data,
+							moviesState = UiState.Success(uiState.data)
+						)
 					}
-					else -> {}
+				}
+
+				else -> {
+
 				}
 			}
+
+			updateState { it.copy(moviesState = uiState) }
 		}
 	}
 

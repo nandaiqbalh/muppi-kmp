@@ -12,12 +12,11 @@ interface SavedMovieDao{
 	suspend fun upsert(movieEntity: MovieEntity)
 
 	@Query("""
-        SELECT * FROM MovieEntity 
-        WHERE (:isMovie IS NULL OR isMovie = :isMovie)
-        AND (:genreIds IS NULL OR genreIds IN (:genreIds))
-        AND (:query IS NULL OR title LIKE '%' || :query || '%')
-    """)
-	fun getMovies(isMovie: Boolean? = null, genreIds: List<Int>? = null, query: String? = null): Flow<List<MovieEntity>>
+    SELECT * FROM MovieEntity 
+    WHERE (:isMovie IS NULL OR isMovie = :isMovie)
+    AND (:query IS NULL OR title LIKE '%' || :query || '%')
+""")
+	fun getMovies(isMovie: Boolean? = null, query: String? = null): Flow<List<MovieEntity>>
 
 	@Query("SELECT * FROM MovieEntity WHERE id = :id")
 	suspend fun getSavedMovie(id: Int): MovieEntity?
