@@ -28,10 +28,7 @@ class ExploreViewModel(
 				updateState { it.copy(isSearchFieldVisible = action.isVisible) }
 			}
 			is ExploreAction.OnQueryChange -> {
-				viewModelScope.launch {
-					delay(2000)
-					updateState { it.copy(keyword = action.keyword, genres = emptyList()) }
-				}
+				updateState { it.copy(keyword = action.keyword, genres = emptyList()) }
 			}
 			is ExploreAction.OnSelectGenres -> {
 				updateState { it.copy(genres = action.genres, keyword = "") }

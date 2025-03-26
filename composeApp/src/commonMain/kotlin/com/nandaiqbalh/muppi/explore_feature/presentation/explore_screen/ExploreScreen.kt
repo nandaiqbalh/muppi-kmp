@@ -22,6 +22,10 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberCoroutineScope
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -38,6 +42,7 @@ import com.nandaiqbalh.muppi.core.presentation.components.SearchCard
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
 import com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen.component.ExploreContentSection
+import kotlinx.coroutines.delay
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_search
 import muppi.composeapp.generated.resources.nav_item_explore
@@ -88,6 +93,14 @@ fun ExploreScreen(
 		)
 	}
 
+	var searchText by remember { mutableStateOf("") }
+
+	val coroutineScope = rememberCoroutineScope()
+
+	LaunchedEffect(searchText) {
+		delay(2000)
+		onAction(ExploreAction.OnQueryChange(searchText))
+	}
 
 	Box(
 		modifier = Modifier
@@ -168,7 +181,7 @@ fun ExploreScreen(
 								onAction(ExploreAction.OnClickSearchIcon(!state.isSearchFieldVisible))
 							},
 							onValueChanged = { text ->
-								onAction(ExploreAction.OnQueryChange(text))
+								searchText = text
 							}
 						)
 					}
