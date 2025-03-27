@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
-import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -26,7 +25,6 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import com.nandaiqbalh.muppi.core.domain.model.Genre
 import com.nandaiqbalh.muppi.core.domain.model.genreList
 import com.nandaiqbalh.muppi.core.presentation.inactiveColor
 import com.nandaiqbalh.muppi.core.presentation.onBackground
@@ -43,9 +41,6 @@ fun FilterGenreSection(
 	genres: List<Int>,  // List of selected genre IDs
 	onSelectGenres: (List<Int>) -> Unit  // Callback when selection changes
 ) {
-	// Convert selected genre IDs to genre names based on the genreList
-	val selectedGenresNames = remember { genreList.filter { genres.contains(it.id) }.map { it.name } }
-
 	// State to hold the selected genre IDs
 	var selectedGenres by remember { mutableStateOf(genres.toSet()) }
 

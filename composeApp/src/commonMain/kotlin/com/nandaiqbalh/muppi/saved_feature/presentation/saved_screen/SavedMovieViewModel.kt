@@ -3,7 +3,6 @@ package com.nandaiqbalh.muppi.saved_feature.presentation.saved_screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nandaiqbalh.muppi.core.domain.UiState
-import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.saved_feature.domain.usecase.SavedMovieUseCase
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

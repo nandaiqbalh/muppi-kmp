@@ -2,12 +2,11 @@ package com.nandaiqbalh.muppi.home_feature.presentation.detail.detail_screen
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.nandaiqbalh.muppi.core.data.mapper.toMovie
 import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.utils.logging
-import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetDetailUseCase
 import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetCastsUseCase
+import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetDetailUseCase
 import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetSimilarUseCase
 import com.nandaiqbalh.muppi.home_feature.domain.usecase.GetVideosUseCase
 import com.nandaiqbalh.muppi.saved_feature.domain.usecase.SavedMovieUseCase

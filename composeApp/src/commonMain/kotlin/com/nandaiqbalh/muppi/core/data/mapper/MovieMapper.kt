@@ -1,9 +1,6 @@
 package com.nandaiqbalh.muppi.core.data.mapper
 
 import com.nandaiqbalh.muppi.core.data.dto.DetailMovieDto
-import com.nandaiqbalh.muppi.core.domain.model.Movie
-import com.nandaiqbalh.muppi.core.utils.orFalse
-import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.core.data.dto.MoviesDto
 import com.nandaiqbalh.muppi.core.data.dto.SeriesDto
 import com.nandaiqbalh.muppi.core.data.local_database.model.NowPlayingEntity
@@ -11,8 +8,10 @@ import com.nandaiqbalh.muppi.core.data.local_database.model.SeriesOnAirEntity
 import com.nandaiqbalh.muppi.core.data.local_database.model.TopRatedEntity
 import com.nandaiqbalh.muppi.core.data.local_database.model.UpcomingEntity
 import com.nandaiqbalh.muppi.core.domain.model.DetailMovie
-import com.nandaiqbalh.muppi.core.domain.model.Genre
+import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.domain.model.genreList
+import com.nandaiqbalh.muppi.core.utils.orFalse
+import com.nandaiqbalh.muppi.core.utils.orZero
 import com.nandaiqbalh.muppi.saved_feature.data.local_database.MovieEntity
 
 // Extension function to map MoviesDto to a list of Movie objects

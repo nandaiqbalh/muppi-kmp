@@ -3,9 +3,7 @@ package com.nandaiqbalh.muppi.explore_feature.presentation.explore_screen
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.nandaiqbalh.muppi.core.domain.UiState
-import com.nandaiqbalh.muppi.core.utils.logging
 import com.nandaiqbalh.muppi.explore_feature.domain.usecase.ExploreMovieOrTvUseCase
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch

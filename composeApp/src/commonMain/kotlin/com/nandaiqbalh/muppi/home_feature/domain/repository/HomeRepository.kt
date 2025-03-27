@@ -4,8 +4,7 @@ import com.nandaiqbalh.muppi.core.domain.NetworkResult
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import kotlinx.coroutines.flow.Flow
 
-interface
-HomeRepository {
+interface HomeRepository {
 
 	suspend fun getNowPlayingMovies(page: Int, language: String = "en-US"): Flow<NetworkResult<List<Movie>>>
 

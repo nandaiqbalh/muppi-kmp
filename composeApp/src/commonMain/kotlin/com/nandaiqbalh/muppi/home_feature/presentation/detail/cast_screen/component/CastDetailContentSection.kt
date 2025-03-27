@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ExperimentalLayoutApi
 import androidx.compose.foundation.layout.FlowRow
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,7 +32,6 @@ import com.nandaiqbalh.muppi.core.domain.UiState
 import com.nandaiqbalh.muppi.core.domain.model.CastDetail
 import com.nandaiqbalh.muppi.core.presentation.components.ErrorComponent
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
-import com.nandaiqbalh.muppi.core.presentation.components.SingleHeaderText
 import com.nandaiqbalh.muppi.core.presentation.components.TitleValueText
 import com.nandaiqbalh.muppi.core.presentation.onBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
@@ -50,7 +48,6 @@ import muppi.composeapp.generated.resources.nunito_medium
 import muppi.composeapp.generated.resources.nunito_regular
 import muppi.composeapp.generated.resources.tv_birthday
 import muppi.composeapp.generated.resources.tv_place_of_birth
-import muppi.composeapp.generated.resources.tv_similar_movies
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
 import org.jetbrains.compose.resources.stringResource

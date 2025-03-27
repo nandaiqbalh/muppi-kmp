@@ -28,7 +28,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.nandaiqbalh.muppi.core.domain.model.Movie
 import com.nandaiqbalh.muppi.core.presentation.components.PulseAnimation
-import com.nandaiqbalh.muppi.core.presentation.components.shimmerBackground
 import com.nandaiqbalh.muppi.core.presentation.onBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryColor
@@ -41,10 +40,8 @@ import com.skydoves.landscapist.components.rememberImageComponent
 import muppi.composeapp.generated.resources.Res
 import muppi.composeapp.generated.resources.ic_failed
 import muppi.composeapp.generated.resources.nunito_medium
-import muppi.composeapp.generated.resources.tv_error_general
 import org.jetbrains.compose.resources.Font
 import org.jetbrains.compose.resources.painterResource
-import org.jetbrains.compose.resources.stringResource
 
 @Composable
 fun TopRatedItem(

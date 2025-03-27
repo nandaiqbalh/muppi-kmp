@@ -24,7 +24,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -37,7 +36,6 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import com.nandaiqbalh.muppi.core.domain.UiState
-import com.nandaiqbalh.muppi.core.presentation.components.PreventUserInteractionComponent
 import com.nandaiqbalh.muppi.core.presentation.components.SearchCard
 import com.nandaiqbalh.muppi.core.presentation.primaryBackground
 import com.nandaiqbalh.muppi.core.presentation.primaryFont
@@ -94,8 +92,6 @@ fun ExploreScreen(
 	}
 
 	var searchText by remember { mutableStateOf("") }
-
-	val coroutineScope = rememberCoroutineScope()
 
 	LaunchedEffect(searchText) {
 		delay(2000)

@@ -44,9 +44,6 @@ import muppi.composeapp.generated.resources.movie_deleted_title
 import muppi.composeapp.generated.resources.movie_saved_description
 import muppi.composeapp.generated.resources.movie_saved_title
 import muppi.composeapp.generated.resources.ok
-import muppi.composeapp.generated.resources.save
-import muppi.composeapp.generated.resources.save_movie_description
-import muppi.composeapp.generated.resources.save_movie_title
 import org.jetbrains.compose.resources.getString
 import org.jetbrains.compose.resources.painterResource
 
